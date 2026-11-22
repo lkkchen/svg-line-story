@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SVG 长卷 / SVG Line Story</title>
+<meta name="description" content="两份可离线打开的 SVG + SMIL 长卷示例。">
+<style>
+  :root {
+    --paper: #fcfaf4;
+    --ink: #375763;
+    --sage: #5b796c;
+    --muted: #819891;
+    --line: #d5e0d6;
+    --card: #fffdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font: 17px/1.6 "Iowan Old Style", Palatino, "Songti SC", serif;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+  p.kicker {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font: 12px/1.4 ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+  h1 span { color: var(--muted); font-weight: 400; }
+  .lead { max-width: 38em; margin: 16px 0 36px; }
+  .examples { display: grid; gap: 16px; }
+  a.card {
+    display: block;
+    padding: 22px 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    color: inherit;
+    text-decoration: none;
+  }
+  a.card:hover { border-color: var(--sage); }
+  a.card strong { display: block; font-size: 22px; font-weight: 500; }
+  a.card em {
+    display: block;
+    margin-top: 2px;
+    color: var(--muted);
+    font-style: normal;
+    font: 13px/1.4 ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0.06em;
+  }
+  a.card p { margin: 10px 0 0; }
+  footer {
+    margin-top: 36px;
+    color: var(--muted);
+    font: 14px/1.5 ui-sans-serif, system-ui, sans-serif;
+  }
+  footer a { color: var(--sage); }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">SVG + SMIL</p>
+  <h1>SVG 长卷 <span>/ SVG Line Story</span></h1>
+  <p class="lead">两份已经编译好的长卷，可以直接在浏览器里播放。故事、路径和画面都是原生 SVG。Two finished scrolls. Open either one and play it in the browser. The story, the path, and the drawings are native SVG.</p>
+  <div class="examples">
+    <a class="card" href="examples/spring/dist/">
+      <strong>一笔画出春天</strong>
+      <em>A LINE INTO SPRING</em>
+      <p>三幕，约 32 秒。一颗种子沿一条线醒来、盛放，然后离开。A seed wakes, blooms, and travels on along one line.</p>
+    </a>
+    <a class="card" href="examples/1024/dist/">
+      <strong>一行代码，点亮世界</strong>
+      <em>FROM THE FIRST PROGRAM</em>
+      <p>程序员节长卷。用来看一幕里可以画多少具体的东西，不是新故事的默认长度。A programmer’s-day scroll, kept as a density reference rather than a default length.</p>
+    </a>
+  </div>
+  <footer>
+    <a href="https://github.com/lkkchen/svg-line-story">GitHub</a>
+  </footer>
+</main>
+</body>
+</html>

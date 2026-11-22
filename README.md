@@ -4,6 +4,8 @@
 
 ## 中文
 
+在线示例：<https://lkkchen.github.io/svg-line-story/>
+
 一套可安装到支持 Agent Skills 的创作指令与编译器。**给 Agent 一个主题**，它规划情节、原创矢量物件与连续路径，然后生成 SVG + SMIL 长卷网页。**画风、故事主线与场景以原生 SVG 为主体**；需要时才加入透明 GIF 的微小局部动画（蝴蝶振翅、花瓣、微光、波纹），不用整页水彩图片代替画面。
 
 ### 包含什么
@@ -103,6 +105,8 @@ python3 tests/browser_gif_smoke.py examples/spring/dist/index.html examples/spri
 **美术规范不变：** 统一墨蓝线条、奶油白留白、少量鼠尾草绿/暖橙/珊瑚色块；路径必须经过真实几何锚点。GIF 不得覆盖整张画布、不能携带必读文字，更不能替代主线与主体轮廓。
 
 ## English
+
+Live examples: <https://lkkchen.github.io/svg-line-story/>
 
 Installable authoring instructions and a compiler for Agent Skills. **Give an agent a theme** and it plans the plot, draws original vector objects, lays a continuous path, and builds an SVG + SMIL scroll page. **The look, the story line, and the scenes stay native SVG.** Transparent GIFs are only for small local motion (a butterfly's wings, petals, sparkles, ripples). Do not replace the picture with a full-page watercolor.
 
