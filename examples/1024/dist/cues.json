@@ -1,0 +1,1336 @@
+{
+  "title": "一行代码，点亮世界",
+  "theme": "1024 程序员节：从计算的起源到 AI 时代，一行代码如何点亮世界",
+  "duration": 146.2,
+  "objectPins": [
+    {
+      "object": "desk",
+      "x": 375.0,
+      "y": 1096.0
+    },
+    {
+      "object": "coder",
+      "x": 155.0,
+      "y": 1119.4
+    },
+    {
+      "object": "laptop",
+      "x": 480.75,
+      "y": 987.85
+    },
+    {
+      "object": "mug",
+      "x": 644.5,
+      "y": 1091.0
+    },
+    {
+      "object": "bug-enter",
+      "x": 507.0,
+      "y": 1078.0
+    },
+    {
+      "object": "night-sky",
+      "x": 650.0,
+      "y": 134.0
+    },
+    {
+      "object": "glyphs-prologue",
+      "x": 590.0,
+      "y": 400.0
+    },
+    {
+      "object": "clock",
+      "x": 536.5,
+      "y": 696.5
+    },
+    {
+      "object": "glyphs-hello",
+      "x": 60.0,
+      "y": 1440.0
+    },
+    {
+      "object": "gears",
+      "x": 225.0,
+      "y": 2022.5
+    },
+    {
+      "object": "card",
+      "x": 345.4,
+      "y": 2313.2
+    },
+    {
+      "object": "manuscript",
+      "x": 435.0,
+      "y": 2704.8
+    },
+    {
+      "object": "stars-calc",
+      "x": 91.6,
+      "y": 2641.9
+    },
+    {
+      "object": "graph-paper",
+      "x": 0.0,
+      "y": 1760.0
+    },
+    {
+      "object": "abacus",
+      "x": 139.0,
+      "y": 2413.0
+    },
+    {
+      "object": "candle",
+      "x": 135.0,
+      "y": 2785.0
+    },
+    {
+      "object": "note1843",
+      "x": 74.0,
+      "y": 2850.0
+    },
+    {
+      "object": "p-babbage",
+      "x": 104.0,
+      "y": 2103.64
+    },
+    {
+      "object": "p-ada",
+      "x": 630.0,
+      "y": 2838.64
+    },
+    {
+      "object": "p-turing",
+      "x": 118.0,
+      "y": 2943.36
+    },
+    {
+      "object": "cabinet",
+      "x": 550.0,
+      "y": 3274.8
+    },
+    {
+      "object": "note1946",
+      "x": 600.0,
+      "y": 3040.0
+    },
+    {
+      "object": "logbook",
+      "x": 282.8,
+      "y": 3624.0
+    },
+    {
+      "object": "moth-caption",
+      "x": 170.0,
+      "y": 3755.0
+    },
+    {
+      "object": "bug-curious",
+      "x": 102.0,
+      "y": 3500.0
+    },
+    {
+      "object": "note1947",
+      "x": 310.0,
+      "y": 3560.0
+    },
+    {
+      "object": "chip",
+      "x": 460.0,
+      "y": 3731.2
+    },
+    {
+      "object": "note1971",
+      "x": 580.0,
+      "y": 3830.0
+    },
+    {
+      "object": "circuit-bg",
+      "x": 0.0,
+      "y": 3900.0
+    },
+    {
+      "object": "magnifier",
+      "x": 590.0,
+      "y": 4070.0
+    },
+    {
+      "object": "turing-tape",
+      "x": 141.68,
+      "y": 4174.4
+    },
+    {
+      "object": "p-hopper",
+      "x": 630.0,
+      "y": 3530.12
+    },
+    {
+      "object": "transistor",
+      "x": 109.0,
+      "y": 3940.7
+    },
+    {
+      "object": "note-transistor",
+      "x": 48.0,
+      "y": 4055.0
+    },
+    {
+      "object": "ic-1958",
+      "x": 604.5,
+      "y": 4281.0
+    },
+    {
+      "object": "binary",
+      "x": 380.0,
+      "y": 4430.0
+    },
+    {
+      "object": "code",
+      "x": 627.0,
+      "y": 4663.5
+    },
+    {
+      "object": "gui",
+      "x": 285.0,
+      "y": 4889.0
+    },
+    {
+      "object": "note1984",
+      "x": 110.0,
+      "y": 5110.0
+    },
+    {
+      "object": "bug-mouse",
+      "x": 510.0,
+      "y": 5097.6
+    },
+    {
+      "object": "desktop",
+      "x": 575.0,
+      "y": 5232.0
+    },
+    {
+      "object": "note1981",
+      "x": 520.0,
+      "y": 5280.0
+    },
+    {
+      "object": "sheet",
+      "x": 144.5,
+      "y": 5472.0
+    },
+    {
+      "object": "note1977",
+      "x": 60.0,
+      "y": 5520.0
+    },
+    {
+      "object": "keyboard-duck",
+      "x": 144.4,
+      "y": 5242.4
+    },
+    {
+      "object": "hello-bubbles",
+      "x": 440.0,
+      "y": 5150.0
+    },
+    {
+      "object": "first-mouse",
+      "x": 600.1,
+      "y": 5505.8
+    },
+    {
+      "object": "term-a",
+      "x": 181.1,
+      "y": 5778.2
+    },
+    {
+      "object": "note1969",
+      "x": 60.0,
+      "y": 5910.0
+    },
+    {
+      "object": "term-b",
+      "x": 448.9,
+      "y": 6018.2
+    },
+    {
+      "object": "network",
+      "x": 545.0,
+      "y": 6255.0
+    },
+    {
+      "object": "note1989",
+      "x": 480.0,
+      "y": 6385.0
+    },
+    {
+      "object": "phone",
+      "x": 260.7,
+      "y": 6369.2
+    },
+    {
+      "object": "page404",
+      "x": 617.2,
+      "y": 6725.0
+    },
+    {
+      "object": "globe",
+      "x": 130.0,
+      "y": 6055.0
+    },
+    {
+      "object": "mail",
+      "x": 80.4,
+      "y": 6669.4
+    },
+    {
+      "object": "p-hamilton",
+      "x": 98.0,
+      "y": 6798.36
+    },
+    {
+      "object": "tcp-packet",
+      "x": 555.4,
+      "y": 6798.64
+    },
+    {
+      "object": "lamps",
+      "x": 560.0,
+      "y": 7142.0
+    },
+    {
+      "object": "train",
+      "x": 687.0,
+      "y": 7587.0
+    },
+    {
+      "object": "tablet",
+      "x": 294.0,
+      "y": 7855.6
+    },
+    {
+      "object": "note2007",
+      "x": 110.0,
+      "y": 7960.0
+    },
+    {
+      "object": "skyline",
+      "x": 420.0,
+      "y": 7520.0
+    },
+    {
+      "object": "smart-home",
+      "x": 584.5,
+      "y": 7881.5
+    },
+    {
+      "object": "browser-home",
+      "x": 565.68,
+      "y": 8072.56
+    },
+    {
+      "object": "appphone",
+      "x": 478.2,
+      "y": 8498.0
+    },
+    {
+      "object": "cloud",
+      "x": 534.0,
+      "y": 8919.8
+    },
+    {
+      "object": "qr",
+      "x": 143.0,
+      "y": 9143.0
+    },
+    {
+      "object": "tower5g",
+      "x": 584.0,
+      "y": 9142.8
+    },
+    {
+      "object": "videocall",
+      "x": 524.0,
+      "y": 9496.0
+    },
+    {
+      "object": "mapnav",
+      "x": 256.2,
+      "y": 9522.8
+    },
+    {
+      "object": "probe",
+      "x": 425.0,
+      "y": 10006.0
+    },
+    {
+      "object": "note1999",
+      "x": 560.0,
+      "y": 10040.0
+    },
+    {
+      "object": "units",
+      "x": 571.2,
+      "y": 10373.0
+    },
+    {
+      "object": "silence",
+      "x": 265.0,
+      "y": 10697.5
+    },
+    {
+      "object": "stars-mars",
+      "x": 80.16,
+      "y": 10956.44
+    },
+    {
+      "object": "rack",
+      "x": 135.0,
+      "y": 11274.8
+    },
+    {
+      "object": "gpu",
+      "x": 595.0,
+      "y": 11612.0
+    },
+    {
+      "object": "note2012",
+      "x": 520.0,
+      "y": 11690.0
+    },
+    {
+      "object": "scalecloud",
+      "x": 292.5,
+      "y": 11913.2
+    },
+    {
+      "object": "glyphs-cloud",
+      "x": 580.0,
+      "y": 11940.0
+    },
+    {
+      "object": "neural",
+      "x": 540.0,
+      "y": 12313.6
+    },
+    {
+      "object": "note2017",
+      "x": 74.0,
+      "y": 12490.0
+    },
+    {
+      "object": "note2022",
+      "x": 74.0,
+      "y": 12530.0
+    },
+    {
+      "object": "ai-bubble",
+      "x": 430.0,
+      "y": 12717.5
+    },
+    {
+      "object": "bug-feature",
+      "x": 180.0,
+      "y": 12964.0
+    },
+    {
+      "object": "constellation",
+      "x": 40.0,
+      "y": 12050.0
+    },
+    {
+      "object": "robot",
+      "x": 585.9,
+      "y": 13228.5
+    },
+    {
+      "object": "p-hinton",
+      "x": 602.0,
+      "y": 12500.12
+    },
+    {
+      "object": "dartmouth",
+      "x": 147.2,
+      "y": 13332.16
+    },
+    {
+      "object": "goboard",
+      "x": 158.0,
+      "y": 13688.0
+    },
+    {
+      "object": "llm",
+      "x": 548.75,
+      "y": 14039.8
+    },
+    {
+      "object": "aicoder",
+      "x": 190.0,
+      "y": 14384.0
+    },
+    {
+      "object": "genart",
+      "x": 544.5,
+      "y": 14700.8
+    },
+    {
+      "object": "years-d",
+      "x": 520.0,
+      "y": 13340.0
+    },
+    {
+      "object": "glyphs-d",
+      "x": 40.0,
+      "y": 14020.0
+    },
+    {
+      "object": "star-d1",
+      "x": 658.24,
+      "y": 14289.16
+    },
+    {
+      "object": "star-d2",
+      "x": 96.32,
+      "y": 15001.88
+    },
+    {
+      "object": "quantum",
+      "x": 540.0,
+      "y": 15244.0
+    },
+    {
+      "object": "rocket",
+      "x": 149.8,
+      "y": 15711.2
+    },
+    {
+      "object": "humanoid",
+      "x": 550.0,
+      "y": 15970.0
+    },
+    {
+      "object": "evcar",
+      "x": 157.0,
+      "y": 16240.0
+    },
+    {
+      "object": "station",
+      "x": 524.5,
+      "y": 16486.5
+    },
+    {
+      "object": "years-f",
+      "x": 40.0,
+      "y": 15940.0
+    },
+    {
+      "object": "orbit-f",
+      "x": 620.0,
+      "y": 15736.0
+    },
+    {
+      "object": "glyphs-f",
+      "x": 520.0,
+      "y": 16180.0
+    },
+    {
+      "object": "star-f1",
+      "x": 59.2,
+      "y": 15332.8
+    },
+    {
+      "object": "star-f2",
+      "x": 677.28,
+      "y": 16545.52
+    },
+    {
+      "object": "flower-f",
+      "x": 640.0,
+      "y": 15632.0
+    },
+    {
+      "object": "window",
+      "x": 565.0,
+      "y": 16854.8
+    },
+    {
+      "object": "desk2",
+      "x": 375.0,
+      "y": 17260.0
+    },
+    {
+      "object": "coder2",
+      "x": 155.0,
+      "y": 17283.4
+    },
+    {
+      "object": "laptop2",
+      "x": 480.75,
+      "y": 17151.85
+    },
+    {
+      "object": "reply",
+      "x": 612.0,
+      "y": 17260.4
+    },
+    {
+      "object": "digits",
+      "x": 166.25,
+      "y": 17602.5
+    },
+    {
+      "object": "bug-wave",
+      "x": 297.5,
+      "y": 17509.0
+    },
+    {
+      "object": "star-l",
+      "x": 39.2,
+      "y": 17422.8
+    },
+    {
+      "object": "flower-l",
+      "x": 63.0,
+      "y": 17558.4
+    },
+    {
+      "object": "firework-l",
+      "x": 95.0,
+      "y": 17840.0
+    },
+    {
+      "object": "firework-r",
+      "x": 655.0,
+      "y": 17840.0
+    },
+    {
+      "object": "giants",
+      "x": 371.0,
+      "y": 17822.0
+    },
+    {
+      "object": "glyphs-n",
+      "x": 40.0,
+      "y": 17420.0
+    },
+    {
+      "object": "orbit-n",
+      "x": 620.0,
+      "y": 17374.0
+    }
+  ],
+  "cues": {
+    "laptop": 4.82,
+    "gears": 14.22,
+    "card": 16.1,
+    "manuscript": 19.77,
+    "cabinet": 23.59,
+    "logbook": 26.87,
+    "chip": 28.45,
+    "binary": 33.11,
+    "code": 35.38,
+    "gui": 37.28,
+    "desktop": 39.52,
+    "sheet": 41.92,
+    "term-a": 45.04,
+    "term-b": 47.27,
+    "network": 48.85,
+    "phone": 50.67,
+    "lamps": 56.34,
+    "train": 58.53,
+    "tablet": 62.24,
+    "appphone": 66.22,
+    "cloud": 68.63,
+    "qr": 70.85,
+    "videocall": 73.41,
+    "mapnav": 75.18,
+    "probe": 78.66,
+    "units": 81.4,
+    "silence": 84.32,
+    "rack": 88.26,
+    "gpu": 91.8,
+    "scalecloud": 95.18,
+    "neural": 98.64,
+    "ai-bubble": 101.29,
+    "goboard": 108.54,
+    "llm": 111.47,
+    "aicoder": 114.33,
+    "genart": 117.01,
+    "quantum": 121.0,
+    "rocket": 123.72,
+    "humanoid": 125.89,
+    "evcar": 128.05,
+    "station": 130.08,
+    "window": 132.93,
+    "digits": 138.6
+  },
+  "connections": [
+    {
+      "object": "laptop",
+      "chapter": "hello",
+      "x": 480.75,
+      "y": 987.85,
+      "pathPointError": 0.0,
+      "lineArrival": 5.0,
+      "revealAt": 4.82
+    },
+    {
+      "object": "gears",
+      "chapter": "calc",
+      "x": 225.0,
+      "y": 2022.5,
+      "pathPointError": 0.0,
+      "lineArrival": 14.52,
+      "revealAt": 14.22
+    },
+    {
+      "object": "card",
+      "chapter": "calc",
+      "x": 345.4,
+      "y": 2313.2,
+      "pathPointError": 0.0,
+      "lineArrival": 16.35,
+      "revealAt": 16.1
+    },
+    {
+      "object": "manuscript",
+      "chapter": "calc",
+      "x": 435.0,
+      "y": 2704.8,
+      "pathPointError": 0.0,
+      "lineArrival": 20.07,
+      "revealAt": 19.77
+    },
+    {
+      "object": "cabinet",
+      "chapter": "chip",
+      "x": 550.0,
+      "y": 3274.8,
+      "pathPointError": 0.0,
+      "lineArrival": 23.99,
+      "revealAt": 23.59
+    },
+    {
+      "object": "logbook",
+      "chapter": "chip",
+      "x": 282.8,
+      "y": 3624.0,
+      "pathPointError": 0.0,
+      "lineArrival": 27.17,
+      "revealAt": 26.87
+    },
+    {
+      "object": "chip",
+      "chapter": "chip",
+      "x": 460.0,
+      "y": 3731.2,
+      "pathPointError": 0.0,
+      "lineArrival": 28.75,
+      "revealAt": 28.45
+    },
+    {
+      "object": "binary",
+      "chapter": "talk",
+      "x": 380.0,
+      "y": 4430.0,
+      "pathPointError": 0.0,
+      "lineArrival": 33.21,
+      "revealAt": 33.11
+    },
+    {
+      "object": "code",
+      "chapter": "talk",
+      "x": 627.0,
+      "y": 4663.5,
+      "pathPointError": 0.0,
+      "lineArrival": 35.68,
+      "revealAt": 35.38
+    },
+    {
+      "object": "gui",
+      "chapter": "talk",
+      "x": 285.0,
+      "y": 4889.0,
+      "pathPointError": 0.0,
+      "lineArrival": 37.58,
+      "revealAt": 37.28
+    },
+    {
+      "object": "desktop",
+      "chapter": "talk",
+      "x": 575.0,
+      "y": 5232.0,
+      "pathPointError": 0.0,
+      "lineArrival": 39.82,
+      "revealAt": 39.52
+    },
+    {
+      "object": "sheet",
+      "chapter": "talk",
+      "x": 144.5,
+      "y": 5472.0,
+      "pathPointError": 0.0,
+      "lineArrival": 42.22,
+      "revealAt": 41.92
+    },
+    {
+      "object": "term-a",
+      "chapter": "net",
+      "x": 181.1,
+      "y": 5778.2,
+      "pathPointError": 0.0,
+      "lineArrival": 45.34,
+      "revealAt": 45.04
+    },
+    {
+      "object": "term-b",
+      "chapter": "net",
+      "x": 448.9,
+      "y": 6018.2,
+      "pathPointError": 0.0,
+      "lineArrival": 47.57,
+      "revealAt": 47.27
+    },
+    {
+      "object": "network",
+      "chapter": "net",
+      "x": 545.0,
+      "y": 6255.0,
+      "pathPointError": 0.0,
+      "lineArrival": 49.15,
+      "revealAt": 48.85
+    },
+    {
+      "object": "phone",
+      "chapter": "net",
+      "x": 260.7,
+      "y": 6369.2,
+      "pathPointError": 0.0,
+      "lineArrival": 51.02,
+      "revealAt": 50.67
+    },
+    {
+      "object": "lamps",
+      "chapter": "life",
+      "x": 560.0,
+      "y": 7142.0,
+      "pathPointError": 0.0,
+      "lineArrival": 56.54,
+      "revealAt": 56.34
+    },
+    {
+      "object": "train",
+      "chapter": "life",
+      "x": 687.0,
+      "y": 7587.0,
+      "pathPointError": 0.0,
+      "lineArrival": 59.13,
+      "revealAt": 58.53
+    },
+    {
+      "object": "tablet",
+      "chapter": "life",
+      "x": 294.0,
+      "y": 7855.6,
+      "pathPointError": 0.0,
+      "lineArrival": 62.54,
+      "revealAt": 62.24
+    },
+    {
+      "object": "appphone",
+      "chapter": "pocket",
+      "x": 478.2,
+      "y": 8498.0,
+      "pathPointError": 0.0,
+      "lineArrival": 66.52,
+      "revealAt": 66.22
+    },
+    {
+      "object": "cloud",
+      "chapter": "pocket",
+      "x": 534.0,
+      "y": 8919.8,
+      "pathPointError": 0.0,
+      "lineArrival": 68.93,
+      "revealAt": 68.63
+    },
+    {
+      "object": "qr",
+      "chapter": "pocket",
+      "x": 143.0,
+      "y": 9143.0,
+      "pathPointError": 0.0,
+      "lineArrival": 71.15,
+      "revealAt": 70.85
+    },
+    {
+      "object": "videocall",
+      "chapter": "pocket",
+      "x": 524.0,
+      "y": 9496.0,
+      "pathPointError": 0.0,
+      "lineArrival": 73.71,
+      "revealAt": 73.41
+    },
+    {
+      "object": "mapnav",
+      "chapter": "pocket",
+      "x": 256.2,
+      "y": 9522.8,
+      "pathPointError": 0.0,
+      "lineArrival": 75.48,
+      "revealAt": 75.18
+    },
+    {
+      "object": "probe",
+      "chapter": "mars",
+      "x": 425.0,
+      "y": 10006.0,
+      "pathPointError": 0.0,
+      "lineArrival": 79.01,
+      "revealAt": 78.66
+    },
+    {
+      "object": "units",
+      "chapter": "mars",
+      "x": 571.2,
+      "y": 10373.0,
+      "pathPointError": 0.0,
+      "lineArrival": 81.7,
+      "revealAt": 81.4
+    },
+    {
+      "object": "silence",
+      "chapter": "mars",
+      "x": 265.0,
+      "y": 10697.5,
+      "pathPointError": 0.0,
+      "lineArrival": 84.67,
+      "revealAt": 84.32
+    },
+    {
+      "object": "rack",
+      "chapter": "cloudgpu",
+      "x": 135.0,
+      "y": 11274.8,
+      "pathPointError": 0.0,
+      "lineArrival": 88.56,
+      "revealAt": 88.26
+    },
+    {
+      "object": "gpu",
+      "chapter": "cloudgpu",
+      "x": 595.0,
+      "y": 11612.0,
+      "pathPointError": 0.0,
+      "lineArrival": 92.1,
+      "revealAt": 91.8
+    },
+    {
+      "object": "scalecloud",
+      "chapter": "cloudgpu",
+      "x": 292.5,
+      "y": 11913.2,
+      "pathPointError": 0.0,
+      "lineArrival": 95.48,
+      "revealAt": 95.18
+    },
+    {
+      "object": "neural",
+      "chapter": "ai",
+      "x": 540.0,
+      "y": 12313.6,
+      "pathPointError": 0.0,
+      "lineArrival": 98.99,
+      "revealAt": 98.64
+    },
+    {
+      "object": "ai-bubble",
+      "chapter": "ai",
+      "x": 430.0,
+      "y": 12717.5,
+      "pathPointError": 0.0,
+      "lineArrival": 101.59,
+      "revealAt": 101.29
+    },
+    {
+      "object": "goboard",
+      "chapter": "decade",
+      "x": 158.0,
+      "y": 13688.0,
+      "pathPointError": 0.0,
+      "lineArrival": 108.84,
+      "revealAt": 108.54
+    },
+    {
+      "object": "llm",
+      "chapter": "decade",
+      "x": 548.75,
+      "y": 14039.8,
+      "pathPointError": 0.0,
+      "lineArrival": 111.77,
+      "revealAt": 111.47
+    },
+    {
+      "object": "aicoder",
+      "chapter": "decade",
+      "x": 190.0,
+      "y": 14384.0,
+      "pathPointError": 0.0,
+      "lineArrival": 114.63,
+      "revealAt": 114.33
+    },
+    {
+      "object": "genart",
+      "chapter": "decade",
+      "x": 544.5,
+      "y": 14700.8,
+      "pathPointError": 0.0,
+      "lineArrival": 117.31,
+      "revealAt": 117.01
+    },
+    {
+      "object": "quantum",
+      "chapter": "frontier",
+      "x": 540.0,
+      "y": 15244.0,
+      "pathPointError": 0.0,
+      "lineArrival": 121.3,
+      "revealAt": 121.0
+    },
+    {
+      "object": "rocket",
+      "chapter": "frontier",
+      "x": 149.8,
+      "y": 15711.2,
+      "pathPointError": 0.0,
+      "lineArrival": 124.02,
+      "revealAt": 123.72
+    },
+    {
+      "object": "humanoid",
+      "chapter": "frontier",
+      "x": 550.0,
+      "y": 15970.0,
+      "pathPointError": 0.0,
+      "lineArrival": 126.19,
+      "revealAt": 125.89
+    },
+    {
+      "object": "evcar",
+      "chapter": "frontier",
+      "x": 157.0,
+      "y": 16240.0,
+      "pathPointError": 0.0,
+      "lineArrival": 128.35,
+      "revealAt": 128.05
+    },
+    {
+      "object": "station",
+      "chapter": "frontier",
+      "x": 524.5,
+      "y": 16486.5,
+      "pathPointError": 0.0,
+      "lineArrival": 130.38,
+      "revealAt": 130.08
+    },
+    {
+      "object": "window",
+      "chapter": "next",
+      "x": 565.0,
+      "y": 16854.8,
+      "pathPointError": 0.0,
+      "lineArrival": 133.33,
+      "revealAt": 132.93
+    },
+    {
+      "object": "digits",
+      "chapter": "next",
+      "x": 166.25,
+      "y": 17602.5,
+      "pathPointError": 0.0,
+      "lineArrival": 138.6,
+      "revealAt": 138.6
+    }
+  ],
+  "pathLengths": {
+    "hello": 902.18,
+    "calc": 1690.82,
+    "chip": 1815.09,
+    "talk": 2480.66,
+    "net": 1771.42,
+    "life": 2002.01,
+    "pocket": 2637.24,
+    "mars": 1475.73,
+    "cloudgpu": 1785.87,
+    "ai": 1701.5,
+    "decade": 2280.53,
+    "frontier": 2711.06,
+    "next": 1890.18
+  },
+  "grow": [
+    {
+      "begin": 5.0,
+      "duration": 3.82,
+      "from": 77.78,
+      "to": 744.9095,
+      "visibleDesignHeight": 1790.84
+    },
+    {
+      "begin": 8.82,
+      "duration": 3.82,
+      "from": 744.9095,
+      "to": 951.7772,
+      "visibleDesignHeight": 2163.2
+    },
+    {
+      "begin": 12.63,
+      "duration": 3.82,
+      "from": 951.7772,
+      "to": 1273.1663,
+      "visibleDesignHeight": 2741.7
+    },
+    {
+      "begin": 16.45,
+      "duration": 3.82,
+      "from": 1273.1663,
+      "to": 1501.187,
+      "visibleDesignHeight": 3152.14
+    },
+    {
+      "begin": 20.26,
+      "duration": 3.82,
+      "from": 1501.187,
+      "to": 1810.9817,
+      "visibleDesignHeight": 3709.77
+    },
+    {
+      "begin": 24.08,
+      "duration": 3.82,
+      "from": 1810.9817,
+      "to": 2012.0337,
+      "visibleDesignHeight": 4071.66
+    },
+    {
+      "begin": 27.9,
+      "duration": 3.82,
+      "from": 2012.0337,
+      "to": 2311.0245,
+      "visibleDesignHeight": 4609.84
+    },
+    {
+      "begin": 31.71,
+      "duration": 3.82,
+      "from": 2311.0245,
+      "to": 2560.8251,
+      "visibleDesignHeight": 5059.49
+    },
+    {
+      "begin": 35.53,
+      "duration": 3.82,
+      "from": 2560.8251,
+      "to": 2845.2243,
+      "visibleDesignHeight": 5571.4
+    },
+    {
+      "begin": 39.35,
+      "duration": 3.82,
+      "from": 2845.2243,
+      "to": 3042.741,
+      "visibleDesignHeight": 5926.93
+    },
+    {
+      "begin": 43.16,
+      "duration": 3.82,
+      "from": 3042.741,
+      "to": 3300.5118,
+      "visibleDesignHeight": 6390.92
+    },
+    {
+      "begin": 46.98,
+      "duration": 3.82,
+      "from": 3300.5118,
+      "to": 3509.5361,
+      "visibleDesignHeight": 6767.16
+    },
+    {
+      "begin": 50.79,
+      "duration": 3.82,
+      "from": 3509.5361,
+      "to": 3839.8595,
+      "visibleDesignHeight": 7361.75
+    },
+    {
+      "begin": 54.61,
+      "duration": 3.82,
+      "from": 3839.8595,
+      "to": 4128.3898,
+      "visibleDesignHeight": 7881.1
+    },
+    {
+      "begin": 58.43,
+      "duration": 3.82,
+      "from": 4128.3898,
+      "to": 4315.8373,
+      "visibleDesignHeight": 8218.51
+    },
+    {
+      "begin": 62.24,
+      "duration": 3.82,
+      "from": 4315.8373,
+      "to": 4654.887,
+      "visibleDesignHeight": 8828.8
+    },
+    {
+      "begin": 66.06,
+      "duration": 3.82,
+      "from": 4654.887,
+      "to": 5009.5405,
+      "visibleDesignHeight": 9467.17
+    },
+    {
+      "begin": 69.88,
+      "duration": 3.82,
+      "from": 5009.5405,
+      "to": 5257.1648,
+      "visibleDesignHeight": 9912.9
+    },
+    {
+      "begin": 73.69,
+      "duration": 3.82,
+      "from": 5257.1648,
+      "to": 5461.6025,
+      "visibleDesignHeight": 10280.88
+    },
+    {
+      "begin": 77.51,
+      "duration": 3.82,
+      "from": 5461.6025,
+      "to": 5718.1711,
+      "visibleDesignHeight": 10742.71
+    },
+    {
+      "begin": 81.32,
+      "duration": 3.82,
+      "from": 5718.1711,
+      "to": 5966.5795,
+      "visibleDesignHeight": 11189.84
+    },
+    {
+      "begin": 85.14,
+      "duration": 3.82,
+      "from": 5966.5795,
+      "to": 6270.0159,
+      "visibleDesignHeight": 11736.03
+    },
+    {
+      "begin": 88.96,
+      "duration": 3.82,
+      "from": 6270.0159,
+      "to": 6471.5345,
+      "visibleDesignHeight": 12098.76
+    },
+    {
+      "begin": 92.77,
+      "duration": 3.82,
+      "from": 6471.5345,
+      "to": 6701.8248,
+      "visibleDesignHeight": 12513.28
+    },
+    {
+      "begin": 96.59,
+      "duration": 3.82,
+      "from": 6701.8248,
+      "to": 6943.8196,
+      "visibleDesignHeight": 12948.88
+    },
+    {
+      "begin": 100.41,
+      "duration": 3.82,
+      "from": 6943.8196,
+      "to": 7230.5586,
+      "visibleDesignHeight": 13465.01
+    },
+    {
+      "begin": 104.22,
+      "duration": 3.82,
+      "from": 7230.5586,
+      "to": 7519.8874,
+      "visibleDesignHeight": 13985.8
+    },
+    {
+      "begin": 108.04,
+      "duration": 3.82,
+      "from": 7519.8874,
+      "to": 7791.2444,
+      "visibleDesignHeight": 14474.24
+    },
+    {
+      "begin": 111.85,
+      "duration": 3.82,
+      "from": 7791.2444,
+      "to": 8049.8249,
+      "visibleDesignHeight": 14939.68
+    },
+    {
+      "begin": 115.67,
+      "duration": 3.82,
+      "from": 8049.8249,
+      "to": 8320.3396,
+      "visibleDesignHeight": 15426.61
+    },
+    {
+      "begin": 119.49,
+      "duration": 3.82,
+      "from": 8320.3396,
+      "to": 8639.5522,
+      "visibleDesignHeight": 16001.19
+    },
+    {
+      "begin": 123.3,
+      "duration": 3.82,
+      "from": 8639.5522,
+      "to": 8926.4041,
+      "visibleDesignHeight": 16517.53
+    },
+    {
+      "begin": 127.12,
+      "duration": 3.82,
+      "from": 8926.4041,
+      "to": 9183.7722,
+      "visibleDesignHeight": 16980.79
+    },
+    {
+      "begin": 130.94,
+      "duration": 3.82,
+      "from": 9183.7722,
+      "to": 9541.7453,
+      "visibleDesignHeight": 17625.14
+    },
+    {
+      "begin": 134.75,
+      "duration": 3.82,
+      "from": 9541.7453,
+      "to": 9822.3025,
+      "visibleDesignHeight": 18130.14
+    },
+    {
+      "begin": 138.57,
+      "duration": 3.82,
+      "from": 9822.3025,
+      "to": 9822.3025,
+      "visibleDesignHeight": 18130.14
+    },
+    {
+      "begin": 142.38,
+      "duration": 3.82,
+      "from": 9822.3025,
+      "to": 9944.4444,
+      "visibleDesignHeight": 18350.0
+    }
+  ],
+  "warnings": [
+    "Final path ends >5s before the closing card"
+  ],
+  "gifDecorations": []
+}

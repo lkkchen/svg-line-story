@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "V1 line SVG + optional transparent GIF accent / StoryDirector schema 1.1",
+  "type": "object",
+  "required": [
+    "title",
+    "theme",
+    "duration",
+    "canvas",
+    "palette",
+    "grow",
+    "chapters"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
+    },
+    "theme": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "masthead": {
+      "type": "string"
+    },
+    "prologue": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "array", "items": {"type": "string"}}
+      ]
+    },
+    "epilogue": {
+      "type": "string"
+    },
+    "epilogueLines": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {"type": "string"},
+          {
+            "type": "object",
+            "required": ["text"],
+            "properties": {
+              "text": {"type": "string"},
+              "size": {"type": "number"},
+              "color": {"type": "string"},
+              "bold": {"type": "boolean"},
+              "latin": {"type": "boolean"},
+              "dy": {"type": "number"}
+            }
+          }
+        ]
+      }
+    },
+    "epilogueTop": {
+      "type": "number"
+    },
+    "epilogueAt": {
+      "type": "number"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "backgroundShapes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["cx", "cy", "rx", "ry"],
+        "properties": {
+          "cx": {"type": "number"},
+          "cy": {"type": "number"},
+          "rx": {"type": "number"},
+          "ry": {"type": "number"},
+          "fill": {"type": "string"},
+          "opacity": {"type": "number"}
+        }
+      }
+    },
+    "backgroundFlourishes": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/point"}
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 12,
+      "maximum": 300
+    },
+    "canvas": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "background"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "minimum": 350
+        },
+        "height": {
+          "type": "number",
+          "minimum": 1800
+        },
+        "background": {
+          "type": "string"
+        }
+      }
+    },
+    "arc": {
+      "type": "string",
+      "enum": ["three_act", "timeline", "man_in_hole", "myth_buster", "how_it_works", "story_spine"]
+    },
+    "paletteName": {
+      "type": "string",
+      "description": "Id from scripts/palettes.py, such as spring, sea, night. Omitted when the six role colors are custom."
+    },
+    "palette": {
+      "type": "object",
+      "required": [
+        "ink",
+        "sage",
+        "orange",
+        "rose",
+        "sky",
+        "light"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "pathTension": {
+      "type": "number",
+      "minimum": 0.2,
+      "maximum": 1.6
+    },
+    "grow": {
+      "type": "object",
+      "required": [
+        "baseUnits",
+        "spacerUnits"
+      ],
+      "properties": {
+        "baseUnits": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "spacerUnits": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "initialPercent": {
+          "type": "number",
+          "minimum": 10
+        },
+        "aheadUnits": {
+          "type": "number",
+          "minimum": 0
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 2
+        }
+      }
+    },
+    "customMotifs": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "required": [
+              "svg"
+            ],
+            "properties": {
+              "svg": {
+                "type": "string"
+              },
+              "anchorLocal": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        ]
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "start",
+          "duration",
+          "labelAt",
+          "headline",
+          "route",
+          "objects"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+          },
+          "number": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "english": {
+            "type": "string"
+          },
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "duration": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "labelAt": {
+            "$ref": "#/definitions/point"
+          },
+          "headline": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "captionAt": {
+            "$ref": "#/definitions/point"
+          },
+          "caption": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "storyBeat": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "emphasis": {
+            "type": "string",
+            "enum": ["ink", "sage", "orange", "rose"]
+          },
+          "motion": {
+            "type": "string",
+            "enum": ["draw", "pop", "sway", "still"]
+          },
+          "route": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/point"
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "hit"
+                  ],
+                  "properties": {
+                    "hit": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "objects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "motif",
+                "x",
+                "y"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "motif": {
+                  "type": "string"
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "scale": {
+                  "type": "number"
+                },
+                "z": {
+                  "enum": [
+                    "back",
+                    "front"
+                  ]
+                },
+                "anchorLocal": {
+                  "$ref": "#/definitions/point"
+                },
+                "leadSeconds": {
+                  "type": "number"
+                },
+                "fadeDuration": {
+                  "type": "number"
+                },
+                "reveal": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "const": "touch"
+                    }
+                  ]
+                },
+                "motion": {
+                  "type": "string",
+                  "enum": ["draw", "pop", "sway", "still"]
+                }
+              }
+            }
+          },
+          "gifDecorations": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "$ref": "#/definitions/gifDecoration"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "point": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "gifDecoration": {
+      "type": "object",
+      "required": [
+        "id",
+        "src",
+        "width",
+        "height",
+        "trigger"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+        },
+        "src": {
+          "type": "string",
+          "pattern": "^[^:/\\\\?]+\\.gif$"
+        },
+        "attachTo": {
+          "type": "string"
+        },
+        "offset": {
+          "$ref": "#/definitions/point"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "minimum": 12,
+          "maximum": 360
+        },
+        "height": {
+          "type": "number",
+          "minimum": 12,
+          "maximum": 360
+        },
+        "trigger": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "required": [
+                "hit"
+              ],
+              "properties": {
+                "hit": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "offsetSeconds": {
+          "type": "number"
+        },
+        "activeSeconds": {
+          "type": "number",
+          "minimum": 0.2,
+          "maximum": 15
+        },
+        "playback": {
+          "enum": [
+            "once",
+            "loop"
+          ]
+        },
+        "z": {
+          "enum": [
+            "back",
+            "front"
+          ]
+        },
+        "fadeInSeconds": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "fadeOutSeconds": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        }
+      }
+    }
+  }
+}

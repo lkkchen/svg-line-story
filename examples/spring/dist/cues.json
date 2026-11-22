@@ -1,0 +1,216 @@
+{
+  "title": "一笔画出春天",
+  "theme": "一颗种子遇见春天",
+  "duration": 32,
+  "objectPins": [
+    {
+      "object": "pencil",
+      "x": 190.0,
+      "y": 575.0
+    },
+    {
+      "object": "cloud-top",
+      "x": 569.0,
+      "y": 288.62
+    },
+    {
+      "object": "seedlet",
+      "x": 490.0,
+      "y": 1260.0
+    },
+    {
+      "object": "meadow",
+      "x": 120.0,
+      "y": 1414.8
+    },
+    {
+      "object": "butterfly",
+      "x": 140.0,
+      "y": 1613.0
+    },
+    {
+      "object": "blossom",
+      "x": 356.0,
+      "y": 2063.0
+    },
+    {
+      "object": "wild-flowers",
+      "x": 569.0,
+      "y": 2205.8
+    },
+    {
+      "object": "little-cloud",
+      "x": 552.0,
+      "y": 2464.73
+    },
+    {
+      "object": "sunset",
+      "x": 593.0,
+      "y": 2788.2
+    },
+    {
+      "object": "paperboat",
+      "x": 452.0,
+      "y": 2990.0
+    },
+    {
+      "object": "flying-bird",
+      "x": 171.66,
+      "y": 3211.37
+    },
+    {
+      "object": "far-hills",
+      "x": 553.0,
+      "y": 3640.4
+    }
+  ],
+  "cues": {
+    "pencil": 1.42,
+    "seedlet": 10.5,
+    "blossom": 17.15,
+    "paperboat": 24.8
+  },
+  "connections": [
+    {
+      "object": "pencil",
+      "chapter": "awakening",
+      "x": 190.0,
+      "y": 575.0,
+      "pathPointError": 0.0,
+      "lineArrival": 1.6,
+      "revealAt": 1.42
+    },
+    {
+      "object": "seedlet",
+      "chapter": "awakening",
+      "x": 490.0,
+      "y": 1260.0,
+      "pathPointError": 0.0,
+      "lineArrival": 10.7,
+      "revealAt": 10.5
+    },
+    {
+      "object": "seedlet",
+      "chapter": "blooming",
+      "x": 490.0,
+      "y": 1260.0,
+      "pathPointError": 0.0,
+      "lineArrival": 10.7,
+      "revealAt": 10.5
+    },
+    {
+      "object": "blossom",
+      "chapter": "blooming",
+      "x": 356.0,
+      "y": 2063.0,
+      "pathPointError": 0.0,
+      "lineArrival": 17.39,
+      "revealAt": 17.15
+    },
+    {
+      "object": "paperboat",
+      "chapter": "journey",
+      "x": 452.0,
+      "y": 2990.0,
+      "pathPointError": 0.0,
+      "lineArrival": 25.12,
+      "revealAt": 24.8
+    }
+  ],
+  "pathLengths": {
+    "awakening": 908.84,
+    "blooming": 1520.05,
+    "journey": 1743.98
+  },
+  "grow": [
+    {
+      "begin": 0.08,
+      "duration": 3.99,
+      "from": 120.0,
+      "to": 313.7832,
+      "visibleDesignHeight": 1014.81
+    },
+    {
+      "begin": 4.07,
+      "duration": 3.99,
+      "from": 313.7832,
+      "to": 512.0591,
+      "visibleDesignHeight": 1371.71
+    },
+    {
+      "begin": 8.06,
+      "duration": 3.99,
+      "from": 512.0591,
+      "to": 743.2135,
+      "visibleDesignHeight": 1787.78
+    },
+    {
+      "begin": 12.05,
+      "duration": 3.99,
+      "from": 743.2135,
+      "to": 991.0767,
+      "visibleDesignHeight": 2233.94
+    },
+    {
+      "begin": 16.04,
+      "duration": 3.99,
+      "from": 991.0767,
+      "to": 1298.3658,
+      "visibleDesignHeight": 2787.06
+    },
+    {
+      "begin": 20.03,
+      "duration": 3.99,
+      "from": 1298.3658,
+      "to": 1538.0406,
+      "visibleDesignHeight": 3218.47
+    },
+    {
+      "begin": 24.02,
+      "duration": 3.99,
+      "from": 1538.0406,
+      "to": 1798.184,
+      "visibleDesignHeight": 3686.73
+    },
+    {
+      "begin": 28.01,
+      "duration": 3.99,
+      "from": 1798.184,
+      "to": 2000.0,
+      "visibleDesignHeight": 4050.0
+    }
+  ],
+  "warnings": [],
+  "gifDecorations": [
+    {
+      "id": "sprout-sparkles",
+      "src": "assets/sprout-sparkles.gif",
+      "begin": 10.7,
+      "end": 12.86,
+      "naturalDuration": 2.16,
+      "mode": "once",
+      "frames": 24,
+      "loopCount": null
+    },
+    {
+      "id": "bloom-petals",
+      "src": "assets/petal-drift.gif",
+      "begin": 17.39,
+      "end": 19.55,
+      "naturalDuration": 2.16,
+      "mode": "once",
+      "frames": 24,
+      "loopCount": null
+    },
+    {
+      "id": "boat-water-ripples",
+      "src": "assets/boat-ripples.gif",
+      "begin": 25.12,
+      "end": 27.28,
+      "naturalDuration": 2.16,
+      "mode": "once",
+      "frames": 24,
+      "loopCount": null
+    }
+  ]
+}
