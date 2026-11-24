@@ -1,24 +1,24 @@
-# GIF 局部装饰动画 · v1.1
+# Local GIF accents · v1.1
 
-## 设计定位
+## What they are for
 
-**V1 依然是纯 SVG 手绘故事为主，GIF 仅是可选的小面积、短时装饰层。** 最好的 GIF 会让插画轻轻活起来，但关闭 GIF 后，故事仍完整可读。
+**V1 is still a hand-drawn SVG story. A GIF is only an optional, small, short decoration.** The best GIF makes a drawing stir. With the GIF turned off, the story is still complete and readable.
 
-- **必须由 SVG + SMIL 完成**：故事主线/曲线运动、主角轮廓、转场、画布伸长、重要情节触发、文章文字。
-- **可由 GIF 增强**：蝴蝶轻扇翅膀、零星花瓣落下、露珠闪光、纸船边的水纹、小灯忽明忽暗、树叶细微摆动。
-- **不要用 GIF**：整张插画/整幕背景、带大面积白底或水彩底的贴图、任何必须在特定帧精确同步的转场、包含关键文字与 CTA 的画面。
-- 建议每幕 0–2 张，不超过 3 张；160 × 110 像素左右，透明背景，2–4 秒，轻量文件（典型 20–100 KB）；必要时 1 张循环，但必须有明确结束时间。
-- 线条主色取本篇 `palette.ink`；装饰只使用对应的 `sage`、`rose`、`orange` 等。远离大面积渐变、水彩、照片与硬边矩形框。
+- **SVG + SMIL must do these**: the story line and curve motion, the hero outline, transitions, canvas growth, important plot triggers, and the words of the piece.
+- **A GIF may add**: a butterfly wing, a few falling petals, a glint of dew, ripples beside a paper boat, a small lamp flickering, a leaf shifting.
+- **Do not use a GIF for**: a whole drawing or a whole-chapter background, a paste-up with a large white or watercolor ground, any transition that must sync to an exact frame, or a frame that carries essential type or a call to action.
+- Aim for 0–2 per chapter, never more than 3. About 160 × 110 pixels, a transparent ground, 2–4 seconds, a light file (typically 20–100 KB). One may loop if it must, but it needs a clear end time.
+- The line color comes from this piece's `palette.ink`. Decoration uses only the matching `sage`, `rose`, `orange`, and so on. Stay away from large gradients, watercolor, photographs, and hard rectangular frames.
 
-## 如何创作新 GIF
+## How to make a new GIF
 
-先完成 storyboard、SVG 主要物件和连续路径，再决定哪些场景的局部细节值得用 GIF。素材应来自与场景一致的手绘造型，可用手绘关键帧、Pillow 逐帧描绘或独立素材生成后逐帧修正。**不要为了凑数量而生成 GIF。**
+Finish the storyboard, the main SVG objects, and the continuous path first. Then decide which local detail deserves a GIF. The art should be a hand-drawn shape that matches the scene. Draw keyframes by hand, paint frames with Pillow, or generate frames and correct them one by one. **Do not generate a GIF just to raise the count.**
 
-仓库有一个可选 Pillow 工具，用于制作透明、手绘线条风格的小动画：
+The repo has an optional Pillow tool for small transparent line-drawn animations:
 
 ```bash
-# $SKILL = 本技能 SKILL.md 所在目录的绝对路径
-# 如果没有 Pillow：征得用户同意后 python3 -m venv .venv && .venv/bin/pip install pillow，再用 .venv/bin/python 运行
+# $SKILL = the absolute path of the directory that contains this skill's SKILL.md
+# If Pillow is missing: after the user agrees, python3 -m venv .venv && .venv/bin/pip install pillow, then run with .venv/bin/python
 OUT=stories/<slug>
 python3 "$SKILL/scripts/make_decor_gif.py" --kind sparkles --palette sea --output "$OUT/assets/sparkles.gif"
 python3 "$SKILL/scripts/make_decor_gif.py" --kind petals   --palette sea --output "$OUT/assets/petals.gif"
@@ -26,11 +26,11 @@ python3 "$SKILL/scripts/make_decor_gif.py" --kind ripples  --palette sea --outpu
 python3 "$SKILL/scripts/make_decor_gif.py" --kind flutter  --palette sea --output "$OUT/assets/butterfly.gif"
 ```
 
-支持 `--frames`、`--frame-ms`、`--width`、`--height`、`--playback once|loop`，以及 `--palette`（色板 id 或中文名，需与 `story.json` 的 `paletteName` 一致；省略时为春笺）。这是基础形状生成器，不会自动理解主题；遇到独特角色/物件，需要 Agent 自己设计帧。GIF 使用所选色板和透明通道；不要将整张场景截图切成 GIF。
+It accepts `--frames`, `--frame-ms`, `--width`, `--height`, `--playback once|loop`, and `--palette` (a palette id or English name, matching `paletteName` in `story.json`. Omit it for Spring). This is a basic shape generator. It does not understand a theme. A character or object of its own needs frames the agent designs. The GIF uses the chosen palette and a transparent channel. Do not slice a screenshot of the whole scene into a GIF.
 
-## story.json 示例
+## A story.json example
 
-在对应 chapter 的 `gifDecorations` 列表中声明：
+Declare it in that chapter's `gifDecorations` list:
 
 ```json
 {
@@ -49,38 +49,38 @@ python3 "$SKILL/scripts/make_decor_gif.py" --kind flutter  --palette sea --outpu
 }
 ```
 
-- `attachTo`：绑定已经绘制的 SVG 物件锚点，放置坐标 = `anchor` + `offset`，物件移动时装饰自动跟着移。
-- `x,y`：也支持直接给绝对设计坐标，不能与 `attachTo` 同时使用；生成器不会从 GIF 内容推断锚点。
-- `trigger`：绝对秒数（如 `12.6`），或 `{ "hit": "blossom" }`，后者取主线**真正到达该物件锚点**的时间，而不是提前淡入的 `leadSeconds`。
-- `offsetSeconds`：与路径命中时间之间的微调，可为负数；编译器拒绝越出整个故事时长的装饰。
-- `playback:once`：GIF 必须**未配置循环扩展**。编译器读取帧时长，默认播放一个自然周期后退出。可通过 `activeSeconds` 定义可见窗口。
-- `playback:loop`：GIF 必须具有**无限循环扩展**，并显式配置 `activeSeconds`，避免无限占屏。
-- `z:front|back`：装饰与主线的前后层级。
-- `fadeInSeconds`、`fadeOutSeconds`：SVG `<g>` 透明度的 SMIL 渐变，与 GIF 内部帧动画是两层独立时间线。
-- `src`：必须是 `story.json` 所在目录下的本地相对 `.gif` 文件，不能是外链、绝对路径或 `../` 逃逸路径。完整项目导出会拷贝 GIF 作为可编辑资产；HTML/SVG 中会内嵌素材。
+- `attachTo`: bind an SVG object's anchor that is already drawn. Position = `anchor` + `offset`. If the object moves, the accent follows.
+- `x, y`: an absolute design coordinate is also allowed. Do not use it together with `attachTo`. The generator does not infer an anchor from the GIF's pixels.
+- `trigger`: an absolute second such as `12.6`, or `{ "hit": "blossom" }`. The hit form uses the time the main line **actually reaches that object's anchor**, not the early fade-in `leadSeconds`.
+- `offsetSeconds`: a nudge from the path-hit time. It may be negative. The compiler rejects an accent that falls outside the story's duration.
+- `playback:once`: the GIF must **not** have a loop extension. The compiler reads the frame durations and, by default, plays one natural cycle and then leaves. `activeSeconds` can set the visible window.
+- `playback:loop`: the GIF must have an **infinite loop extension**, and you must set `activeSeconds`, so it does not stay on screen forever.
+- `z:front|back`: whether the accent sits in front of or behind the main line.
+- `fadeInSeconds`, `fadeOutSeconds`: an SMIL opacity ramp on the SVG `<g>`. It is a separate timeline from the GIF's own frames.
+- `src`: a local relative `.gif` under the directory that contains `story.json`. Not a remote URL, not an absolute path, not a `../` escape. A full export copies the GIF as an editable asset. HTML and SVG embed the bytes.
 
-## 生成器的同步策略
+## How the generator stays in sync
 
-编译器以路径弧长计算 `lineArrival`，再得到每个 GIF 的 `begin`。**不是用 CSS opacity 模拟 GIF 触发。**
+The compiler computes `lineArrival` from the path's arc length, then each GIF's `begin`. **It does not fake a GIF trigger with CSS opacity.**
 
-### 普通浏览器 `index.html`
+### The ordinary browser `index.html`
 
-- HTML 内联了 GIF 字节；没有远程请求，双击即可离线运行。
-- GIF 的 `<image>` 初始不带 `href`。动画到达 cue 时，浏览器 JS 使用该 GIF 字节创建新的 Blob URL 并挂入 SVG `<image>`，使其以新的解码实例开始播放，而不是让早已播放结束的 GIF 才显形。
-- 播放区间结束时，从元素上移除 `href` 并回收 Blob URL。
-- 重播、时间轴跳转、暂停后恢复，会创建新的实例、**从第一帧重新播放**。因为原生 GIF 不支持以统一的 SVG `setCurrentTime` 帧精确 seek，不能保证暂停时保持原 GIF 内部帧，也不能声称跨所有浏览器毫秒级同步。
-- 线条、画布撑高和场景的 SMIL 时间轴不受 GIF 的反复加载影响；GIF 只是装饰层，提前/延后小量帧不会破坏故事。
+- The HTML inlines the GIF bytes. There is no remote request. Double-click it and it runs offline.
+- The GIF `<image>` starts without `href`. When the animation reaches the cue, browser JavaScript builds a new Blob URL from those bytes and attaches it to the SVG `<image>`, so a new decoder starts. It does not reveal a GIF that already finished playing.
+- When the play window ends, it removes `href` and revokes the Blob URL.
+- Replay, a timeline seek, and resume after pause create a new instance and **play again from the first frame**. A native GIF cannot seek to an exact frame through SVG `setCurrentTime`. Do not claim it holds the internal frame while paused, and do not claim millisecond sync in every browser.
+- The line, the canvas growth, and the scene's SMIL timeline are not affected by reloading the GIF. The GIF is a decoration. Being a few frames early or late does not break the story.
 
 ### `story.svg`
 
-- `story.svg` 的 `<image href="data:image/gif;base64,...">` 会预先加载 GIF；SMIL 只控制其显示时刻与消失时刻，**不保证 GIF 是从可见瞬间的第一帧开始解码**。
-- 浏览器页 `index.html` 才按 cue 新建 Blob 解码。要看精确入场，打开 `index.html`，不要只看 `story.svg`。
+- `story.svg` preloads the GIF in `<image href="data:image/gif;base64,...">`. SMIL only controls when it is shown and when it disappears. **It does not guarantee that the GIF starts decoding on its first frame at the moment it becomes visible.**
+- The browser page `index.html` is what creates a new Blob decoder at the cue. To see the entrance precisely, open `index.html`. Do not judge it from `story.svg` alone.
 
-## 视觉与技术 QA
+## Visual and technical QA
 
-1. 先暂时隐藏 GIF，检查故事是否依旧完整。看不懂则说明关键内容被错误地交给了 GIF。
-2. 检查 GIF 透明背景、色板、边界；不得产生明显矩形贴片。
-3. 运行 `validate_story.py --input stories/<slug>/story.json`：会检查 GIF 真实格式、帧数、透明标记、循环方式、尺寸、路径安全性、锚点、触发是否越界。
-4. 运行 `compile_story.py` 后查看 `cues.json` 里的 `gifDecorations`，确认 GIF 命中时间与路径点相符。
-5. 可选浏览器实测：`python3 "$SKILL/tests/browser_gif_smoke.py" stories/<slug>/dist/index.html stories/<slug>/dist/gif-preview.png`（需 Playwright；否则按 `SKILL.md` 第 6 步，用当前 Agent 的浏览器拖时间轴截图），检查触发前未挂载 / 触发后 Blob / 结束卸载 / seek 新解码器。
-6. 暂时去掉 `gifDecorations` 再编译一次，确认没有 GIF 时故事仍然完整。
+1. Hide the GIFs for a moment and check that the story is still complete. If it is not readable, something essential was wrongly given to a GIF.
+2. Check the transparent ground, the palette, and the edges. There should be no obvious rectangular patch.
+3. Run `validate_story.py --input stories/<slug>/story.json`. It checks the real GIF format, frame count, transparency, loop mode, size, path safety, anchors, and whether a trigger falls outside the story.
+4. After `compile_story.py`, read `gifDecorations` in `cues.json` and confirm the hit times match the path points.
+5. Optional browser check: `python3 "$SKILL/tests/browser_gif_smoke.py" stories/<slug>/dist/index.html stories/<slug>/dist/gif-preview.png` (needs Playwright. Otherwise follow SKILL.md step 6 and drag the timeline in the agent's browser). Check: not mounted before the trigger, a Blob after it, unloaded at the end, a new decoder on seek.
+6. Remove `gifDecorations` and compile once more. The story must still be complete with no GIF.

@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
-"""theme_map.py — 让 SVG 长卷真正吃 palette。
+"""theme_map.py — make an SVG scroll actually use its palette.
 
-问题：24 个内置 motif 里有 41 个硬编码十六进制色
-（叶子的 #C3D6AF、铅笔的 #E9B776……），改 story.json 的 palette 只换得掉
-墨线/底色，叶子还是春天绿。做红白风、万圣节暗调时会一眼穿帮。
+Problem: 24 built-in motifs contain 41 hardcoded hex colors
+(a leaf's #C3D6AF, a pencil's #E9B776, and so on). Changing palette
+in story.json only recolors the ink line and the paper. The leaf stays
+spring green. A red-and-white story, or a dark Halloween one, shows it at once.
 
-做法：不碰原库，编译后按「色相家族」重映射。
-  - 绿系 (hue 70–170)    → palette.sage
-  - 暖橙/琥珀 (25–65)     → palette.orange
-  - 粉/珊瑚 (330–360,0–20) → palette.rose
-  - 冷灰蓝 (170–250)      → palette.sky
-  - 高亮低饱和（奶油）     → palette.light
-  - 暗色 (L<0.32)         → palette.ink
-映射时保留原色的明度差（阴影/高光关系不丢），只替换色相与饱和基准。
+What it does: leave the motif library alone, then remap by hue family after compile.
+  - greens (hue 70–170)       → palette.sage
+  - warm orange / amber (25–65) → palette.orange
+  - pink / coral (330–360, 0–20) → palette.rose
+  - cool gray-blue (170–250)  → palette.sky
+  - bright and low-saturation (cream) → palette.light
+  - dark (L<0.32)             → palette.ink
+The remap keeps the original lightness gaps, so shadows and highlights stay.
+Only the hue and the saturation base change.
 
-用法：
+Usage:
   python3 theme_map.py <in.html|svg> <out> --story story.json [--report]
 """
 import argparse
@@ -62,9 +64,9 @@ def remap(color, palette, ref_l=0.62):
     if not target:
         return color, family
     th, tl, ts = colorsys.rgb_to_hls(*hex_to_rgb(target))
-    # 保留原色的明度差，但夹住范围：否则浅粉类颜色会被压成近白，形体消失
+    # Keep the original lightness gap, but clamp it. Otherwise a pale pink collapses toward white and the shape disappears.
     new_l = max(max(0.03, tl - 0.34), min(min(0.97, tl + 0.18), tl + (l - ref_l) * 0.85))
-    # 饱和度不低于目标色的 45%，保证「红就是红」，不会褪成灰
+    # Saturation stays at least 45% of the target, so a red stays red instead of fading to gray.
     new_s = max(ts * 0.45, min(1.0, ts * (0.55 + 0.9 * s)))
     r, g, b = colorsys.hls_to_rgb(th, new_l, new_s)
     return rgb_to_hex(r, g, b), family
@@ -104,15 +106,15 @@ def main():
     Path(a.output).write_text(out, encoding="utf8")
 
     if a.report:
-        print("重映射 %d 种颜色（palette: %s）" % (len(mapping), json.dumps(palette, ensure_ascii=False)))
+        print("Remapped %d colors (palette: %s)" % (len(mapping), json.dumps(palette, ensure_ascii=False)))
         for fam in sorted(fams):
             items = fams[fam][:6]
-            print("  %-6s %2d 种：" % (fam, len(fams[fam])) +
+            print("  %-6s %2d colors: " % (fam, len(fams[fam])) +
                   ", ".join("%s→%s" % (x, y) for x, y in items))
         residual = [c for c in set(HEX_RE.findall(out))
                     if classify(colorsys.rgb_to_hls(*hex_to_rgb(c))[0:1] + colorsys.rgb_to_hls(*hex_to_rgb(c))[1:])
                     in ("sage", "orange") and c.upper() not in {v.upper() for v in palette.values()}]
-        print("  映射后仍留在绿/橙家族的颜色：%d 种" % len(residual))
+        print("  Colors still in the green or orange family after remapping: %d" % len(residual))
     print("→ %s" % a.output)
 
 

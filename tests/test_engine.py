@@ -30,7 +30,7 @@ class StoryTests(unittest.TestCase):
         p=prepare(self.story)
         doc=render_html(self.story,p,grow_schedule(self.story,p))
         self.assertIn('prefers-reduced-motion: reduce', doc)
-        self.assertIn('从头播放', doc)
+        self.assertIn('Play from the start', doc)
         self.assertIn('id="dock-peek"', doc)
         self.assertIn('DOCK_IDLE_MS', doc)
         self.assertIn('const SOUND=null', doc)
@@ -46,13 +46,13 @@ class StoryTests(unittest.TestCase):
         self.story['sound']={'cues':[{'t':1,'id':'nope'}]}
         with self.assertRaises(ValueError): render_html(self.story,p,grow)
     def test_topic_preset(self):
-        s=plan('星空中的小小梦想');p=prepare(s)
+        s=plan('a little dream among the stars');p=prepare(s)
         self.assertEqual(s['chapters'][0]['objects'][2]['motif'],'star')
         self.assertTrue('rocket' in [x['motif'] for x in p['objects'].values()])
     def test_unknown_topic_fallback(self):
-        self.assertTrue(prepare(plan('关于时间的一首诗')))
+        self.assertTrue(prepare(plan('a poem about time')))
     def test_non_spring_draft_does_not_open_with_pencil(self):
-        forest=plan('森林里的一封信')
+        forest=plan('a letter in the forest')
         motifs=[obj['motif'] for obj in forest['chapters'][0]['objects']]
         hits=[item['hit'] for item in forest['chapters'][0]['route'] if isinstance(item, dict)]
         self.assertNotIn('pencil', motifs)
@@ -60,9 +60,9 @@ class StoryTests(unittest.TestCase):
         self.assertIn('hill', motifs)
         self.assertIn('opening', hits)
         self.assertTrue(prepare(forest))
-        generic=plan('关于时间的一首诗')
+        generic=plan('a poem about time')
         self.assertNotIn('pencil', [obj['motif'] for obj in generic['chapters'][0]['objects']])
-        spring=plan('一笔画出春天')
+        spring=plan('a line into spring')
         self.assertIn('pencil', [obj['motif'] for obj in spring['chapters'][0]['objects']])
     def test_custom_motif(self):
         self.story['customMotifs']={'fox':{'svg':'<path d="M100 180 Q60 80 100 40 Q140 80 100 180 Z" fill="{{sage}}" stroke="{{ink}}" stroke-width="3"/>','anchorLocal':[100,180]}}
@@ -104,32 +104,32 @@ class StoryTests(unittest.TestCase):
             ids.add(item['id'])
             self.assertGreaterEqual(contrast(item['ink'], item['paper']), 4.5)
     def test_suggest_matches_scene_and_offers_range(self):
-        sea=suggest('海边的一封信')
+        sea=suggest('a letter by the sea')
         self.assertEqual(sea['note'], 'matched')
         self.assertEqual(sea['choices'][0]['id'], 'sea')
         self.assertTrue(sea['choices'][0]['recommended'])
-        night=suggest('深夜的海边')
+        night=suggest('the sea late at night')
         self.assertEqual(night['choices'][0]['id'], 'night')
         self.assertIn('sea', [item['id'] for item in night['choices'][:3]])
-        cosmos=suggest('星空中的小小梦想')
+        cosmos=suggest('a little dream among the stars')
         self.assertEqual(cosmos['choices'][0]['id'], 'cosmos')
-        open_theme=suggest('关于时间的一首诗')
+        open_theme=suggest('a poem about time')
         self.assertEqual(open_theme['note'], 'open')
         self.assertEqual(open_theme['choices'][0]['id'], 'spring')
         self.assertTrue(any(item['id'] in ('night', 'cosmos') for item in open_theme['choices']))
         self.assertGreaterEqual(len({item['id'] for item in open_theme['choices']}), 5)
     def test_plan_palette_recolors_story(self):
-        story=plan('海边的一封信', palette='海盐')
+        story=plan('a letter by the sea', palette='Sea salt')
         self.assertEqual(story['paletteName'], 'sea')
         self.assertEqual(story['palette']['ink'], '#163E4C')
         self.assertEqual(story['canvas']['background'], '#F3F7F6')
-        self.assertEqual(plan('海边的一封信')['palette']['ink'], '#375763')
+        self.assertEqual(plan('a letter by the sea')['palette']['ink'], '#375763')
     def test_spring_motif_keeps_authored_fills(self):
         colors=dict(self.story['palette'])
         colors['paper']=self.story['canvas']['background']
         self.assertIn('#E9B776', motif_markup('pencil', colors, 0))
     def test_other_palette_recolors_motif_and_chrome(self):
-        story=plan('夜航', palette='night')
+        story=plan('a night voyage', palette='night')
         colors=dict(story['palette']); colors['paper']=story['canvas']['background']
         flower=motif_markup('flower', colors, 0)
         self.assertNotIn('#F0BFAE', flower)
@@ -141,16 +141,16 @@ class StoryTests(unittest.TestCase):
         spring=render_html(self.story, prepare(self.story), grow_schedule(self.story, prepare(self.story)))
         self.assertEqual(spring.count('--paper:'), 1)
     def test_arc_and_look_package(self):
-        self.assertEqual(suggest_arc('一座城市的变迁')['arc']['id'], 'timeline')
-        self.assertEqual(suggest_arc('失败之后重新站起来')['arc']['id'], 'man_in_hole')
-        self.assertEqual(suggest_arc('关于时间的一首诗')['arc']['id'], 'three_act')
+        self.assertEqual(suggest_arc('how a city changes')['arc']['id'], 'timeline')
+        self.assertEqual(suggest_arc('standing up after failure')['arc']['id'], 'man_in_hole')
+        self.assertEqual(suggest_arc('a poem about time')['arc']['id'], 'three_act')
         moves=motions_for(resolve_arc('how_it_works'), 'calm')
         self.assertEqual(moves[-1], 'still')
         self.assertNotEqual(moves[0], moves[1])
-        sea=resolve_palette('海盐')
+        sea=resolve_palette('Sea salt')
         self.assertEqual(sea['motion'], 'calm')
         self.assertTrue(sea['finish'])
-        story=plan('一座城市的变迁', palette='ink', arc='时间线')
+        story=plan('how a city changes', palette='ink', arc='Timeline')
         self.assertEqual(story['arc'], 'timeline')
         self.assertEqual(story['chapters'][0]['emphasis'], 'ink')
         self.assertEqual(story['chapters'][-1]['motion'], 'still')
@@ -174,11 +174,11 @@ class StoryTests(unittest.TestCase):
         errors, warnings, report=validate(story, ROOT/'examples/spring')
         self.assertEqual(errors, [])
         joined='\n'.join(warnings)
-        self.assertIn('只有 4 个物件', joined)
-        self.assertIn('没有小注释', joined)
-        self.assertIn('偏空', joined)
-        self.assertIn('far-hills 名字是 hill，画出来却是 tree', joined)
-        self.assertNotIn('butterfly 名字', joined)
+        self.assertIn('has only 4 objects', joined)
+        self.assertIn('no small annotation', joined)
+        self.assertIn('sparse', joined)
+        self.assertIn('far-hills is named hill but drawn as tree', joined)
+        self.assertNotIn('butterfly is named', joined)
     def test_thin_custom_hero_and_text_clearance(self):
         story=copy.deepcopy(self.story)
         for chapter in story['chapters']:chapter.pop('gifDecorations',None)
@@ -189,7 +189,7 @@ class StoryTests(unittest.TestCase):
         head['captionAt']=[anchor[0]-20,anchor[1]+10]
         _, warnings, _=validate(story, ROOT/'examples/spring')
         joined='\n'.join(warnings)
-        self.assertIn('主角 blossom 只有 1 个图形', joined)
-        self.assertIn('第 2 幕副文案离主线只有', joined)
+        self.assertIn('hero blossom has only 1 shape', joined)
+        self.assertIn('chapter 2 caption is only', joined)
 
 if __name__=='__main__':unittest.main(verbosity=2)

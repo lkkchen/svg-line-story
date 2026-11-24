@@ -1,68 +1,68 @@
-# 故事编排：从主题到空间长卷
+# Story design: from a theme to a spatial scroll
 
-## 输入极简
+## The input stays small
 
-主题是必需字段。长度、语气、受众若不指定就采用基线：3 幕 / 32 秒 / 750 × 4050 / 手绘线描 / 竖屏优先。用户给出主题后，先交出故事计划：色板、叙事弧、线的隐喻、开场物件、素材清单和三幕分镜。用户确认之前不写 `story.json`、不编译。「你定」「直接做」「随便」只决定计划里用推荐色板和推荐弧，不能跳过把计划给用户看这一步。用户看见计划后说「就这样」或同义的确认，才开始做。除此之外不要提出问卷。
+The theme is required. If length, tone, or audience are not specified, use the baseline: 3 chapters / 32 seconds / 750 × 4050 / hand-drawn line art / portrait first. After the user gives a theme, hand over the story plan: palette, narrative arc, what the line means, the opening object, the material list, and a three-chapter storyboard. Do not write `story.json` and do not compile before the user confirms. "You decide," "just do it," and "whatever" only choose the recommended palette and arc inside the plan. They do not skip showing the plan. Start only after the user has seen the plan and says "go ahead" or an equivalent confirmation. Do not add a questionnaire beyond that.
 
-## 先攒素材，再写分镜
+## Gather materials before the storyboard
 
-故事薄，多半是因为没有具体东西可画、可写。动笔前列 8–12 条素材，编号，后面的分镜按编号取用。
+A thin story is usually a story with nothing concrete to draw or write. Before you draw, list 8–12 materials, numbered. Later chapters pull from those numbers.
 
-| 好素材 | 不算素材 |
+| A real material | Not a material |
 |---|---|
-| 「建兴七年」、长坂坡、怀里的阿斗、一杆银枪 | 勇敢、忠诚、传奇的一生 |
-| 1946 年的 ENIAC、一屋子真空管、打孔卡片 | 科技进步、改变世界 |
-| 凌晨四点的早餐摊、蒸笼冒的白气、两块钱一根油条 | 烟火气、温暖、平凡的美好 |
+| "the seventh year of Jianxing," Changban Slope, the child in his arms, one silver spear | brave, loyal, a legendary life |
+| ENIAC in 1946, a room of vacuum tubes, a punched card | technological progress, changing the world |
+| a breakfast stall at four in the morning, steam from a basket, two coins for one fried dough stick | street life, warmth, ordinary beauty |
 
-每幕至少用 2 条：一条进标题或副文案，一条变成画面上的辅助物件或小注释。全卷用掉 6 条以上。剩下没用的留着，第 6 步发现空段时拿来补。
+Each chapter uses at least 2: one in the title or caption, one as a supporting object or a small annotation on screen. The whole scroll uses more than 6. Keep the unused ones. When step 6 finds an empty stretch, fill it from this list.
 
-## 先选叙事弧，再写三幕
+## Choose the arc, then write the three chapters
 
-`scripts/arcs.py` 只有适合长卷的骨架。广告用的痛点煽动、行动号召不在里面。
+`scripts/arcs.py` only has skeletons that fit a scroll. Ad arcs that push a pain point or end on a call to action are not in it.
 
-| id | 何时用 | 三幕在线上的意思 |
+| id | When to use it | What the three chapters mean on the line |
 |---|---|---|
-| `three_act` | 没有更具体的骨架时 | 起因 → 转折 → 回响。线完成一次变化，结尾回到开头的情绪 |
-| `timeline` | 历史、变迁、成长、一生 | 起点 → 经过 → 此刻。线只向前，不倒叙 |
-| `man_in_hole` | 失败、迷路、失去之后再站起来 | 原本安稳 → 坠落 → 爬出来。线先下沉，再抬到比起点更高 |
-| `myth_buster` | 纠正一个误区 | 大家以为 → 其实不然 → 因此。线先穿过一个看似成立的物件，再折向真正的原因 |
-| `how_it_works` | 一件事怎么发生 | 先看见 → 中间一步 → 所以如此。线按真实顺序走 |
-| `story_spine` | 日常被一件事改写 | 每天如此 → 直到有一天 → 从此以后 |
+| `three_act` | When there is no more specific skeleton | Cause → turn → echo. The line completes one change, and the ending returns to the opening feeling |
+| `timeline` | History, change, growing up, a life | Start → passing through → this moment. The line only goes forward. No flashback |
+| `man_in_hole` | Standing up again after failure, getting lost, or a loss | Steady → the fall → climbing out. The line sinks first, then rises higher than the start |
+| `myth_buster` | Correcting a misconception | What people think → not so → therefore. The line passes through something that looks true, then turns toward the real cause |
+| `how_it_works` | How one thing happens | First sight → the middle step → so this is why. The line follows the real order |
+| `story_spine` | An ordinary day rewritten by one event | Every day → until one day → from then on |
 
-选定后写入 `story.json` 的 `arc`。每一幕写 `role`、`emphasis`、`motion`，含义见下面两节。`plan_story.py --arc` 会填上这三项，正文仍要重写。
+Write the choice into `arc` on `story.json`. Each chapter gets `role`, `emphasis`, and `motion`. The next two sections say what those mean. `plan_story.py --arc` fills the three fields. You still rewrite the prose.
 
-每幕用一句 storyBeat 说清：线从哪里来 → 碰到什么 → 触发什么 → 再往哪里去。
+One `storyBeat` per chapter says: where the line comes from → what it hits → what that triggers → where it goes next.
 
-## 第一屏是钩子
+## The first screen is a hook
 
-第一幕标题不要写成「一条线出发了」这种铺垫。第一屏就要让人知道这篇的承诺或转折，例如「这封信会漂到灯塔」而不是「海边有一封信」。线从**本篇第一个有剧情意义的物件**锚点长出来：信封、种子、灯、票根、轨枕都可以。`examples/spring/` 的铅笔只属于那篇「从落笔开始」的样例，新故事不要默认放一支 `pencil`，也不要写「画笔落下」。只有主题本身是画画、落笔、春笺时才用铅笔。一幕里该有多少具体物件，看 `examples/1024/story.json` 的任意一幕，不要看它的总幕数。结尾回扣第一幕的物件或句子，不重复主题名字。
+Do not title the first chapter with a warm-up such as "a line sets out." The first screen has to tell the promise or the turn, for example "this letter will drift to the lighthouse," not "there is a letter by the sea." The line grows from **the first object in this piece that matters to the plot**: an envelope, a seed, a lamp, a ticket stub, a railroad tie. The pencil in `examples/spring/` belongs only to that "it starts with a mark" sample. A new story does not get a `pencil` by default, and it does not say "the brush comes down." Use a pencil only when the theme itself is drawing, making a mark, or spring stationery. For how many concrete objects belong in one chapter, look at any chapter of `examples/1024/story.json`, not at its total chapter count. The ending returns to an object or a sentence from the first chapter. It does not repeat the theme's name.
 
-## 每 3–5 秒有一次新事件
+## A new event every 3–5 seconds
 
-一幕大约 10 秒。每幕至少两次触发：线碰到主角，隔 3–5 秒再碰到另一个物件，或让主角完成下半段动作。不要一个物件入场后停满整幕。转场仍然靠同一根线的连续切线，不要硬切。
+A chapter is about 10 seconds. Each chapter has at least two hits: the line meets the hero, then 3–5 seconds later it meets another object, or the hero finishes the second half of a motion. Do not let one object enter and then hold the whole chapter. The transition is still the continuous tangent of the same line. Do not hard-cut.
 
-## 相邻主角换一种动作
+## Neighboring heroes change motion
 
-动作只有四种：`draw` 沿线长出，`pop` 弹出并轻轻过冲后停住，`sway` 摆一下后停住，`still` 只淡入。全片最后一幕用 `still`，把停住留给回扣。相邻两幕的主角不要同一种。
+There are only four motions: `draw` grows along the line, `pop` pops and overshoots once then stops, `sway` swings once then stops, `still` only fades in. The last chapter of the piece is `still`, so the stop is saved for the return. Neighboring heroes do not share a motion.
 
-内置物件的实际动作记在 `scripts/motifs.py` 的 `MOTIF_MOTION`。花是 `pop`，芽是 `draw`，船和蝴蝶是 `sway`，其余多数是 `still`。幕上写的 `motion` 如果和内置物件不一致，就为这一下写 `customMotifs`，不要假装内置图形会换动作。缩放过冲停在 `1.06–1.08` 再回到 `1`，不要缩到比终点更小。`pop` 和 `sway` 用样条缓入，写法在 `references/vector-art.md`。同一物件里后到的零件比主体晚 0.15–0.4 秒。
+The real motion of a built-in object is `MOTIF_MOTION` in `scripts/motifs.py`. A flower is `pop`, a sprout is `draw`, a boat and a butterfly are `sway`, and most of the rest are `still`. If the chapter's `motion` does not match the built-in object, write `customMotifs` for that beat. Do not pretend the built-in drawing will change motion. The scale overshoot stops at `1.06–1.08` and returns to `1`. Do not shrink past the end size. `pop` and `sway` ease in on a spline. The markup is in `references/vector-art.md`. A later part of the same object is 0.15–0.4 seconds after the body.
 
-同一根连续线就是穿过全卷的那个移动主体。不要每幕再加一个飞过画面的配角。GIF 也是：`calm` 色板通常 0–1 个，`punchy` 可以在点题的那一拍加一个短促火花，不要每幕都有。
+The one continuous line is the moving subject that crosses the whole scroll. Do not add another character that flies across the frame in every chapter. The same rule is for GIFs: a `calm` palette usually has 0–1, a `punchy` palette may add one short spark on the beat the theme turns on. Not every chapter.
 
-## 同一套颜色，每幕换主角色
+## One palette, a different hero color each chapter
 
-纸色全卷不变，不要每幕铺一块底。`emphasis` 决定这一幕谁占颜色：主角填充用这个角色色，其他物件退到更浅的 `light` / `sky`。推荐顺序由叙事弧给出，常见是辅色 → 点缀 → 线条色。相邻两幕不要强调同一个角色。橙色行进点是全卷唯一表示「正在发生」的标记，不要在配角上再做一处会动的高亮。
+The paper color never changes. Do not lay a ground block in every chapter. `emphasis` decides who owns the color in this chapter: the hero fill uses that role color, and the other objects fall back to a paler `light` / `sky`. The narrative arc gives the recommended order. A common one is second fill → accent → line color. Neighboring chapters do not emphasize the same role. The orange traveling dot is the only mark in the whole scroll that means "this is happening now." Do not add another moving highlight on a supporting object.
 
-## 视线节奏
+## The rhythm of the eye
 
-- 建议竖向长度 1200–1600 设计单位/幕。一幕里分出疏密：主角周围是密的一团（主角 + 贴身配件 + 投影 + 小注释），两团之间留一段只有主线和点缀的路程。任意 1000 设计单位高的一段里至少 5 个物件（文字不算）。
-- 每幕至少 1 个主角 + 3 个辅助物件 + 4 个点缀小件 + 1 处小注释，这是下限。点缀小件是草丛、星点、碎纸、地面投影、蒸汽、速度线这类 20–60 设计单位的小东西，沿主线两侧散开，让路程不空。
-- 在进入核心插画之前留下路程，引导观众往下看；关键节点出现在画面空间的可辨位置。
-- 让曲线左右交替但不只是机械 Z 字，局部允许回环，转场靠连续切线。`timeline` 的线少回折，`man_in_hole` 的第二幕明显下沉。
-- 文字避开路径 70–100 设计单位以上；主标题每行 4–9 个中文字，副文案 10–16 个汉字分为 2 行。色板的 `typeStyle` 决定标题偏松还是略重，不要改成另一套字体家族。
+- A vertical length of 1200–1600 design units per chapter is a good range. Inside a chapter, vary the density: a tight cluster around the hero (hero + close parts + shadow + a small annotation), and between clusters a stretch that is only the main line and ornaments. Any 1000 design units of height needs at least 5 objects (type does not count).
+- Each chapter has at least 1 hero + 3 supporting objects + 4 small ornaments + 1 small annotation. That is the floor. A small ornament is a tuft of grass, a star dot, a scrap of paper, a ground shadow, steam, or a speed line, about 20–60 design units, scattered on both sides of the main line so the journey is not empty.
+- Leave some journey before the main drawing, so the viewer is led downward. A key beat appears somewhere the eye can find.
+- Let the curve alternate left and right, but not as a mechanical zigzag. A local loop is allowed. Transitions use a continuous tangent. A `timeline` line folds back rarely. Chapter two of `man_in_hole` sinks clearly.
+- Keep type 70–100 design units away from the path. A headline is about 2–6 words per line. A caption is 2 lines. The palette's `typeStyle` decides whether the title is loose or a little heavy. Do not switch to another font family.
 
-## 分镜检验单
+## Storyboard checklist
 
-一个场景必须包含：`role`、`storyBeat`、`headline`、`caption`、`emphasis`、`motion`、主角图形、特定本地锚点、至少两个 route hit、触发后的具体动画、出场方向、至少 2 条素材编号、3 个以上辅助物件、4 个以上点缀小件、至少 1 处小注释。
+A scene must include: `role`, `storyBeat`, `headline`, `caption`, `emphasis`, `motion`, the hero drawing, a specific local anchor, at least two route hits, a concrete animation after the trigger, the direction it enters from, at least 2 material numbers, more than 3 supporting objects, more than 4 small ornaments, and at least 1 small annotation.
 
-将概念交到程序前，先确认：如果隐藏所有插画，只看那条线，它是否还像有目的地往下一幕走？如果隐藏主线，插画是否只是随机堆叠？二者都不合格时重新改故事。
+Before you hand the idea to the program, check: if every drawing is hidden and only the line remains, does it still look as if it is going somewhere in the next chapter? If the main line is hidden, are the drawings just a random pile? If either answer is no, rewrite the story.

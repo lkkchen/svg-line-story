@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""smoke.py — 浏览器长卷的无头体检（撑高曲线 + 横向溢出 + 控制台报错）。
+"""smoke.py — headless check for a browser scroll (growth curve, horizontal overflow, console errors).
 
-只做结构判断，不做美术判断：
-  · body 高度是否随时间单调增长（撑高器接不上会跳一下）
-  · 是否出现横向滚动（超宽撑高 svg 常见）
-  · 是否有 JS 报错
-输出 JSON 到 stdout。
+Structure only, not art direction:
+  · whether body height grows monotonically (a broken spacer jumps)
+  · whether the page scrolls sideways (a grow SVG that is too wide often does)
+  · whether JavaScript reports an error
+Prints JSON to stdout.
 """
 import asyncio
 import json
@@ -61,7 +61,7 @@ async def probe(path, times, width=440, height=900):
 
 def main():
     if len(sys.argv) < 2:
-        sys.exit("用法: smoke.py <html> [秒,秒,...]")
+        sys.exit("Usage: smoke.py <html> [seconds,seconds,...]")
     times = TIMES
     if len(sys.argv) > 2:
         times = [float(x) for x in sys.argv[2].split(",")]

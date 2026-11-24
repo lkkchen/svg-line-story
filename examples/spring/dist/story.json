@@ -1,10 +1,10 @@
 {
   "schemaVersion": "1.1",
-  "theme": "一颗种子遇见春天",
-  "title": "一笔画出春天",
+  "theme": "A seed meets spring",
+  "title": "A line into spring",
   "subtitle": "A LINE INTO SPRING",
-  "prologue": "一根缓缓生长的线，带我们遇见春天。",
-  "epilogue": "愿每一段路，都有花开。",
+  "prologue": "A line grows slowly and leads us into spring.",
+  "epilogue": "May every stretch of the road find something in bloom.",
   "duration": 32,
   "canvas": {
     "width": 750,
@@ -30,7 +30,7 @@
     {
       "id": "awakening",
       "number": "01",
-      "title": "初醒",
+      "title": "Waking",
       "english": "AWAKENING",
       "start": 1.6,
       "duration": 9.1,
@@ -39,18 +39,18 @@
         730
       ],
       "headline": [
-        "有些故事，",
-        "从一颗种子开始。"
+        "Some stories",
+        "begin with a seed."
       ],
       "captionAt": [
         77,
         1070
       ],
       "caption": [
-        "把微小的希望，",
-        "悄悄种进日子里。"
+        "Plant a small hope",
+        "quietly into the day."
       ],
-      "storyBeat": "画笔落下，蓝色线条绕过山谷，触碰小小的种子，第一株嫩芽醒来。",
+      "storyBeat": "The pencil comes down. A blue line rounds the valley, touches a small seed, and the first sprout wakes.",
       "route": [
         {
           "hit": "pencil"
@@ -130,7 +130,7 @@
     {
       "id": "blooming",
       "number": "02",
-      "title": "盛放",
+      "title": "In bloom",
       "english": "BLOOMING",
       "start": 10.7,
       "duration": 9.4,
@@ -139,18 +139,18 @@
         1480
       ],
       "headline": [
-        "等一朵花，",
-        "慢慢盛开。"
+        "Wait for one flower",
+        "to open slowly."
       ],
       "captionAt": [
         74,
         2195
       ],
       "caption": [
-        "风吹过的时候，",
-        "连线条也变得柔软。"
+        "When the wind passes,",
+        "even the line grows soft."
       ],
-      "storyBeat": "蓝色曲线穿过花草与飞舞的蝴蝶，接上花茎，花瓣像被春风唤醒。",
+      "storyBeat": "The blue curve passes through grass and a butterfly, meets the stem, and the petals wake as if in a spring wind.",
       "route": [
         {
           "hit": "seedlet"
@@ -237,7 +237,7 @@
     {
       "id": "journey",
       "number": "03",
-      "title": "远行",
+      "title": "Setting out",
       "english": "THE JOURNEY",
       "start": 20.1,
       "duration": 11.9,
@@ -246,18 +246,18 @@
         2550
       ],
       "headline": [
-        "把春天，",
-        "送到远方。"
+        "Carry spring",
+        "somewhere far."
       ],
       "captionAt": [
         78,
         3235
       ],
       "caption": [
-        "带着一点光，",
-        "慢慢地向前。"
+        "Take a little light",
+        "and go on slowly."
       ],
-      "storyBeat": "曲线汇成一条长河，托起纸船，陪它穿过阳光与山峦直到天边。",
+      "storyBeat": "The curve becomes a long river, lifts a paper boat, and stays with it through sunlight and hills to the horizon.",
       "route": [
         [
           283,
@@ -319,7 +319,7 @@
           "reveal": 26.7
         },
         {
-          "id": "far-hills",
+          "id": "far-tree",
           "motif": "tree",
           "x": 475,
           "y": 3500,

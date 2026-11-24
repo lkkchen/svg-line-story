@@ -1,16 +1,16 @@
-# 矢量美术规范 · V1 主体纯 SVG，透明 GIF 仅作细节
+# Vector art rules · a pure SVG body, a transparent GIF only as a detail
 
-## 风格锚定
+## The style anchor
 
-V1 参考特点：纸张感来自底色与留白，而不是噪声纹理；轮廓用同一支线色；平涂只用少量角色色；局部有手绘不规则曲率与圆头线帽。图形占画布小面积，文本排版呼吸感强。
+What V1 looks like: the paper feeling comes from the ground color and the open space, not from a noise texture. Outlines use one line color. Flat fills use only a few role colors. Local curves are slightly irregular, and line caps are round. Drawings take a small part of the canvas. Type has room to breathe.
 
-色板不固定成春笺。`scripts/palettes.py` 里每套都提供纸色和 6 个角色色。春笺原色是 `ink #375763`、`sage #98B99F`、`orange #D68E5C`、`rose #F0C5B6`、`sky #E5EDEA`、`light #E5ECE2`、`paper #FCFAF4`，只在用户选定 `spring` 时使用。内置物件的木材、花瓣、船帆等材料色会跟着当前色板走；角色名不变，`sage` 仍是第二填充，`orange` 仍是点缀。
+The palette is not locked to Spring. Each set in `scripts/palettes.py` provides a paper color and 6 role colors. The original Spring colors are `ink #375763`, `sage #98B99F`, `orange #D68E5C`, `rose #F0C5B6`, `sky #E5EDEA`, `light #E5ECE2`, and `paper #FCFAF4`. Use them only when the user chooses `spring`. Wood, petals, sails, and other material colors on built-in objects follow the current palette. The role names stay. `sage` is still the second fill. `orange` is still the accent.
 
-## 制作物件
+## Making an object
 
-默认使用 `scripts/motifs.py` 中 24 个矢量图形。每个在 200 × 200 局部坐标里创作，锚点默认 `[100,180]`：视觉形体必须真的触及该坐标，不能留一个看不见的空锚点。
+By default use the 24 vector drawings in `scripts/motifs.py`. Each is drawn in a local 200 × 200. The default anchor is `[100,180]`: the visible body must actually touch that coordinate. Do not leave an invisible empty anchor.
 
-如果需要新物件（狐狸、小提琴、火车、咖啡机等），给 `story.json` 新增：
+When you need a new object (a fox, a violin, a train, a coffee machine), add it to `story.json`:
 
 ```json
 {
@@ -23,27 +23,27 @@ V1 参考特点：纸张感来自底色与留白，而不是噪声纹理；轮�
 }
 ```
 
-对应章节对象：
+The chapter object:
 
 ```json
 {"id":"letter","motif":"paper-letter","x":310,"y":990,"scale":1,"reveal":"touch","leadSeconds":0.15}
 ```
 
-对应主线 waypoint：
+The main-line waypoint:
 
 ```json
 {"hit":"letter"}
 ```
 
-对象接触点的画布绝对坐标自动变为 `(410,1170)`，不会再手动测算路径的近似位置。
+The canvas coordinate of the contact becomes `(410,1170)` automatically. You do not measure an approximate point on the path by hand.
 
-支持自定义 SVG 的 `<g>`, `<path>`, `<circle>`, `<ellipse>`, `<rect>`, `<line>`, `<polyline>`, `<polygon>`, `<text>`, `<tspan>`，以及少量 SMIL 元素。物件外层 `<g>` 默认带 `palette.ink` 描边，`<text>` 必须写 `stroke="none"` 并显式给 `font-family`，否则字会被描粗；文字内容不能含 `&`。禁止 `<image>`, `<script>`, `<foreignObject>`, 外部链接、CSS `url(...)`。占位符 `{{ink}}`, `{{sage}}`, `{{orange}}`, `{{rose}}`, `{{sky}}`, `{{light}}`, `{{paper}}` 由编译器替换为选定配色，`{{cue}}` 替换为该图形被路径触碰的触发时刻（`{{cue+0.25}}`、`{{cue-0.3}}` 表示相对偏移，用于错峰动作）。错峰见下面「同一物件里的零件错开」。
+A custom SVG may use `<g>`, `<path>`, `<circle>`, `<ellipse>`, `<rect>`, `<line>`, `<polyline>`, `<polygon>`, `<text>`, `<tspan>`, and a little SMIL. The outer `<g>` of an object defaults to a `palette.ink` stroke. `<text>` must set `stroke="none"` and an explicit `font-family`, or the letters get a thick stroke. The text must not contain `&`. Forbidden: `<image>`, `<script>`, `<foreignObject>`, external links, and CSS `url(...)`. The compiler replaces `{{ink}}`, `{{sage}}`, `{{orange}}`, `{{rose}}`, `{{sky}}`, `{{light}}`, and `{{paper}}` with the chosen palette. `{{cue}}` becomes the moment the path touches this drawing. `{{cue+0.25}}` and `{{cue-0.3}}` are offsets, used to stagger motion. Staggering is in "Offset the parts of one object" below.
 
-## 小注释和点缀小件
+## Small annotations and ornaments
 
-编译器没有单独的注释类型，用 `customMotifs` 写，对象不进 `route`，`reveal` 写一个秒数（通常是附近主角的触碰时刻加 0.3–0.8 秒）。
+The compiler has no separate annotation type. Write one as `customMotifs`. The object does not go into `route`. Set `reveal` to a number of seconds (usually the nearby hero's touch plus 0.3–0.8 seconds).
 
-小注释：一行 16–20 号的小字，配一个短箭头或一条引线指向它说明的物件。`<text>` 写 `stroke="none"` 和 `font-family`。
+A small annotation: one line of type around size 16–20, with a short arrow or a leader pointing at the object it explains. `<text>` sets `stroke="none"` and `font-family`.
 
 ```json
 "note-1946": {
@@ -51,7 +51,7 @@ V1 参考特点：纸张感来自底色与留白，而不是噪声纹理；轮�
 }
 ```
 
-点缀小件：一组草丛、星点、碎纸或投影，写在同一个 motif 里，`scale` 0.4–0.8，放在主线两侧 40–120 设计单位外，`z:"back"`。
+A small ornament: a group of grass, star dots, scraps, or a shadow, written as one motif, `scale` 0.4–0.8, placed 40–120 design units to the side of the main line, `z:"back"`.
 
 ```json
 "grass-tufts": {
@@ -59,34 +59,34 @@ V1 参考特点：纸张感来自底色与留白，而不是噪声纹理；轮�
 }
 ```
 
-地面投影直接写进主角的 motif 最底层：`<ellipse cx="100" cy="182" rx="46" ry="7" fill="{{light}}" stroke="none"/>`。
+A ground shadow goes in the bottom layer of the hero's motif: `<ellipse cx="100" cy="182" rx="46" ry="7" fill="{{light}}" stroke="none"/>`.
 
-## 四种命名动作
+## Four named motions
 
-全卷只使用这四种，相邻两幕的主角各用一种，最后一幕是 `still`。色板 `motion: punchy` 时弹出用 0.7 秒，`calm` 时用 1.2 秒。过冲停在 1.08 再回到 1。
+The whole scroll uses only these four. Neighboring heroes each take one. The last chapter is `still`. When the palette is `motion: punchy`, a pop is 0.7 seconds. When it is `calm`, a pop is 1.2 seconds. The overshoot stops at 1.08 and returns to 1.
 
-- `draw`：一根路径用 `stroke-dashoffset` 从满长收到 0。根部先在，末端后到。主线保持匀速，不要给主线加样条。
-- `pop`：`animateTransform`，`type="scale"`，`values="0.2;1.08;1"`，`keyTimes="0;0.72;1"`，`calcMode="spline"`，`keySplines="0.45 0 0.2 1; 0.25 0 0.35 1"`，`fill="freeze"`。前一段缓入到 1.08，后一段落回 1。
-- `sway`：绕锚点 `rotate`，`values="-4;3;-1;0"`，`keyTimes="0;0.34;0.67;1"`，`calcMode="spline"`，`keySplines="0.4 0 0.2 1; 0.3 0 0.3 1; 0.2 0 0.25 1"`，只播一次然后停住。不要无限循环。
-- `still`：只有透明度淡入，没有位移、缩放和旋转。线的到达就是这一拍的运动。
+- `draw`: one path uses `stroke-dashoffset` from the full length down to 0. The root is there first. The tip arrives later. The main line stays constant speed. Do not put a spline on the main line.
+- `pop`: `animateTransform`, `type="scale"`, `values="0.2;1.08;1"`, `keyTimes="0;0.72;1"`, `calcMode="spline"`, `keySplines="0.45 0 0.2 1; 0.25 0 0.35 1"`, `fill="freeze"`. The first stretch eases in to 1.08. The second settles back to 1.
+- `sway`: `rotate` around the anchor, `values="-4;3;-1;0"`, `keyTimes="0;0.34;0.67;1"`, `calcMode="spline"`, `keySplines="0.4 0 0.2 1; 0.3 0 0.3 1; 0.2 0 0.25 1"`. Play once and stop. Do not loop forever.
+- `still`: only an opacity fade. No move, no scale, no rotation. The line's arrival is the motion of this beat.
 
-`pop` 和 `sway` 都要带 `restart="never"`。一帧从 0 跳到 1 不算弹出。缓入落在第一段里，大约 80 毫秒量级的起步，不是另加一段静止。
+Both `pop` and `sway` need `restart="never"`. A jump from 0 to 1 in one frame is not a pop. The ease-in lives in the first stretch, a start on the order of 80 milliseconds, not an extra held still.
 
-内置物件已经带好自己的那一种，见 `MOTIF_MOTION`。要换种，另写 `customMotifs`，并在对象上写 `"motion"`。芽的第二片叶比茎晚 0.4 秒。花和船的缩放、摇摆用上面的样条。
+Built-in objects already carry their own motion. See `MOTIF_MOTION`. To change it, write `customMotifs` and set `"motion"` on the object. A sprout's second leaf is 0.4 seconds after the stem. Flowers and boats use the splines above for scale and sway.
 
-## 线要落地
+## The line has to land
 
-这些规则管自定义物件和主线怎么接、怎么长、怎么叠。不要改成等距仪器，也不要加四面明暗。
+These rules govern how a custom object and the main line meet, grow, and stack. Do not turn this into an even instrument diagram, and do not add shading on all four sides.
 
-- **线停在真正的那一笔上。** 锚点必须落在可见轮廓、根或尖角上。缝、刻度、叶脉、指针停在另一条描边、一个圆点或外轮廓上。装饰线不要在色块中间突然停住。
-- **接触是贴住或相切。** 藤停在船的水线，线从信封尖角长出。下一段从同一个锚点离开。路径不要横穿船身、屋顶或文字。编译器保证坐标误差为 0；锚点调试用来确认笔画也接上了。
-- **生长用一根路径。** 茎、河、轨、轨枕连线写成一条 path，`stroke-dasharray` 和初始 `stroke-dashoffset` 都等于这条路径的长度，再动画到 0。不要用几段重叠的线冒充变长，接缝会在运动里露出来。
-- **同一幕只有一个「正在发生」。** 橙色行进点是时间轴笔尖，全卷只有它表示线头走到了哪里。主角填充用该幕 `emphasis`。配角退到 `light` / `sky`，不要再给配角加会动的高亮。物件上可以留一个静止的小橙点，不要再做第二个沿路径跑的点。
-- **远的在下，近的在上。** 编译顺序是 `z:"back"`、主线、默认的 `front`。山、云、河面写 `"z":"back"`，让线从它们前面走过。船、人、信保持默认 `front`，盖住线的末端。同一层里，`objects` 数组后面的盖住前面的。播放过程中不要改层级。
+- **The line stops on the real stroke.** The anchor lands on a visible outline, a root, or a corner. A seam, a tick, a vein, or a hand stops on another stroke, a dot, or the outer contour. A decorative line does not stop suddenly in the middle of a color block.
+- **Contact is a touch or a tangent.** A vine stops on the boat's waterline. The line grows out of the corner of an envelope. The next stretch leaves from the same anchor. The path does not cut through a hull, a roof, or type. The compiler guarantees a coordinate error of 0. Anchor debug is how you confirm the strokes meet too.
+- **Growth is one path.** A stem, a river, a rail, or the line that ties the ties is one path. `stroke-dasharray` and the initial `stroke-dashoffset` both equal that path's length, then animate to 0. Do not fake growth with several overlapping lines. The seam shows while it moves.
+- **One chapter has one "this is happening now."** The orange traveling dot is the tip of the timeline. It is the only thing in the scroll that says where the head of the line is. The hero fill uses that chapter's `emphasis`. Supporting objects fall back to `light` / `sky`. Do not add another moving highlight to a supporting object. An object may keep one still orange dot. Do not add a second dot that runs along the path.
+- **Far is underneath, near is on top.** The compile order is `z:"back"`, the main line, then the default `front`. Hills, clouds, and the river surface use `"z":"back"` so the line passes in front of them. A boat, a person, and a letter stay the default `front` and cover the end of the line. Inside one layer, later items in the `objects` array cover earlier ones. Do not change stacking while the piece is playing.
 
-## 同一物件里的零件错开
+## Offset the parts of one object
 
-根、船体、灯座用 `begin="{{cue}}"`。叶、帆、光束再晚 0.15–0.4 秒（`{{cue+0.25}}` 这一类）。每一段都 `fill="freeze"`，停在终态。间隔不要超过 0.6 秒，否则这一拍会散。顺序是先承重的部分，后长出来的部分。
+A root, a hull, or a lamp base uses `begin="{{cue}}"`. A leaf, a sail, or a beam is another 0.15–0.4 seconds later (`{{cue+0.25}}` and the like). Every stretch is `fill="freeze"` and stops in its finished state. Do not space them more than 0.6 seconds apart, or the beat falls apart. The load-bearing part comes first. The part that grows comes after.
 
 ```xml
 <animateTransform attributeName="transform" type="scale"
@@ -95,16 +95,16 @@ V1 参考特点：纸张感来自底色与留白，而不是噪声纹理；轮�
   begin="{{cue+0.25}}" dur="1.2s" fill="freeze" restart="never"/>
 ```
 
-`calcMode` 和 `keySplines` 写在 `<animate>` / `<animateTransform>` 上，不依赖 `<style>`。
+`calcMode` and `keySplines` go on `<animate>` / `<animateTransform>`. They do not depend on `<style>`.
 
-## 局部动作优先于整体换图
+## A local motion beats swapping the whole picture
 
-花朵：花瓣围绕花芯组 `<g>` 进行一次 `scale`，根部静止。种子：茎干描边使用 `stroke-dashoffset`，叶片分组展出。纸船：船身小角度 `rotate`，河面波纹用 `path`。关键动作均使用 SMIL；如局部花瓣、微光、翅膀细节确需逐帧效果，可添加**小型透明 GIF 装饰**，但不能替换这朵花、纸船或人物本身的矢量几何。详见 `gif-decoration.md`。
+A flower: the petals are one `<g>` around the center and scale once. The root stays still. A seed: the stem stroke uses `stroke-dashoffset`, and the leaves open as a group. A paper boat: the hull rotates a few degrees, and the river ripples are a `path`. Important motion is SMIL. If a local petal, glint, or wing truly needs frames, you may add a **small transparent GIF accent**. It cannot replace the vector geometry of the flower, the boat, or the person. See `gif-decoration.md`.
 
-自定义图形要有层次，但不靠杂乱的线堆出「精美」。下面是下限：
+A custom drawing has layers. It does not get "beautiful" by piling messy lines. These are the floors:
 
-- **主角**：至少 8 个图形、3 种以上填充（主色、浅一档的辅色、一点点缀色），外加一层细节线（衣褶、木纹、按键、刻度）和一个地面投影或底座。人物要画出脸（眼睛、嘴或腮红）和手里的东西。
-- **辅助物件**：至少 4 个图形、2 种填充。
-- **点缀小件**：1–3 个图形即可，但要成组出现（三簇草、一串星点、两三片碎纸）。
+- **Hero**: at least 8 shapes and more than 3 fills (the main color, a lighter second color, a little accent), plus one detail line (a fold, wood grain, a key, a tick) and a ground shadow or a base. A person needs a face (eyes, a mouth, or a blush) and something in the hands.
+- **Supporting object**: at least 4 shapes and 2 fills.
+- **Small ornament**: 1–3 shapes is enough, but they appear as a group (three tufts of grass, a string of star dots, two or three scraps of paper).
 
-线宽分三档并全卷统一：外轮廓 3–3.5，内部结构线 2–2.5，细节线 1.2–1.6。不要所有线都一样粗，也不要出现 5 以上的粗线（主线除外）。参考 `examples/spring/dist/story.svg` 的笔触重量。
+Stroke width has three steps and stays consistent through the scroll: outer contour 3–3.5, inner structure 2–2.5, detail 1.2–1.6. Do not make every line the same weight, and do not use a stroke of 5 or more (except the main line). For stroke weight, look at `examples/spring/dist/story.svg`.

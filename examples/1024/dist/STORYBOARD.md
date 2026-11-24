@@ -1,26 +1,26 @@
-# 一行代码，点亮世界 · Storyboard
+# One line of code lights the world · Storyboard
 
-**主题**：1024 程序员节：从计算的起源到 AI 时代，一行代码如何点亮世界　 **总时长**：146.2 秒　 **配色**：custom　 **叙事弧**：three_act
+**Theme**: Programmer's Day, 1024: from the origin of computing to the age of AI, how one line of code lights the world  **Duration**: 146.2 seconds  **Palette**: custom  **Arc**: three_act
 
-| 幕次 | 起止时间 | 场景 | 主线要经过的物件 |
+| Chapter | Time | Scene | Objects the line must hit |
 |---|---|---|---|
-| 00 | 5–12.4s |  序章 · 一切从一行 / Hello, World! | laptop |
-| 01 | 12.4–22s |  计算 · 最初，我们 / 教机器计算 | gears、card、manuscript |
-| 02 | 22–32.6s |  芯片 · 从一间房间， / 到一枚芯片 | cabinet、logbook、chip |
-| 03 | 32.6–44s |  交谈 · 我们终于学会 / 与机器交谈 | binary、code、gui、desktop、sheet |
-| 04 | 44–54.6s |  连接 · 后来，我们 / 让世界连接 | term-a、term-b、network、phone |
-| 05 | 54.6–64.8s |  生活 · 代码，悄悄走进 / 每个人的生活 | lamps、train、tablet |
-| 06 | 64.8–77.3s |  口袋 · 世界，装进了 / 每个人的口袋 | appphone、cloud、qr、videocall、mapnav |
-| 07 | 77.3–86.9s |  骤停 · 一艘飞船， / 失联了 | probe、units、silence |
-| 08 | 86.9–96.9s |  云与算力 · 算力上云， / 智能加速 | rack、gpu、scalecloud |
-| 09 | 96.9–107.3s |  智能 · 如今，我们与 / 智能共同创造 | neural、ai-bubble |
-| 10 | 107.3–119.8s |  十年 · 这十年，智能 / 开始加速 | goboard、llm、aicoder、genart |
-| 11 | 119.8–131.8s |  星辰 · 而代码，正飞向 / 更远的地方 | quantum、rocket、humanoid、evcar、station |
-| 12 | 131.8–138.6s |  下一行 · 世界还在等待 / 下一行代码 | window、digits |
+| 00 | 5–12.4s |  Prologue · It all starts with one line / Hello, World! | laptop |
+| 01 | 12.4–22s |  Computing · At first, we / taught machines to compute | gears, card, manuscript |
+| 02 | 22–32.6s |  The chip · From one room, / to one chip | cabinet, logbook, chip |
+| 03 | 32.6–44s |  Conversation · At last we learn / Talking with machines | binary, code, gui, desktop, sheet |
+| 04 | 44–54.6s |  Connection · Later, we / connected the world | term-a, term-b, network, phone |
+| 05 | 54.6–64.8s |  Daily life · Code quietly enters / everyone's life | lamps, train, tablet |
+| 06 | 64.8–77.3s |  A pocket · The world, packed into / everyone's pocket | appphone, cloud, qr, videocall, mapnav |
+| 07 | 77.3–86.9s |  A sudden stop · One spacecraft, / Contact lost | probe, units, silence |
+| 08 | 86.9–96.9s |  Cloud and computing power · Computing power moves to the cloud, / Intelligence accelerates | rack, gpu, scalecloud |
+| 09 | 96.9–107.3s |  Intelligence · Now, together with / intelligence, we create | neural, ai-bubble |
+| 10 | 107.3–119.8s |  A decade · This decade, intelligence / Acceleration begins | goboard, llm, aicoder, genart |
+| 11 | 119.8–131.8s |  Stars · And the code is flying toward / somewhere farther | quantum, rocket, humanoid, evcar, station |
+| 12 | 131.8–138.6s |  Next line · The world is still waiting / the next line of code | window, digits |
 
-## 路径触发点
+## Path cues
 
-| 元素 | 到达时间 | 入场时间 | 坐标 |
+| Object | Arrival | Reveal | Position |
 |---|---:|---:|---|
 | laptop | 5.00s | 4.82s | (480.8, 987.9) |
 | gears | 14.52s | 14.22s | (225.0, 2022.5) |
@@ -66,9 +66,9 @@
 | window | 133.33s | 132.93s | (565.0, 16854.8) |
 | digits | 138.60s | 138.60s | (166.2, 17602.5) |
 
-## 审核须知
+## Review notes
 
-- 所有构图位置属于 750px 设计坐标，不是 CSS 像素。
-- 路径、主角和关键动作仍然属于内联 SVG；小尺寸透明 GIF 只做局部装饰。
-- 浏览器版本按 cue 动态挂载 GIF；暂停/跳转后只保证重新开始，不支持 GIF 帧级 seek。
-- story.svg 会提前内嵌 GIF：SMIL 控制可见性，不保证 GIF 入场时从第一帧开始。
+- Positions are 750px design units, not CSS pixels.
+- The path, the heroes, and the important motion stay inline SVG. Small transparent GIFs are local decoration only.
+- The browser page mounts each GIF at its cue. After a pause or a seek it starts again from the first frame. Frame-accurate GIF seeking is not supported.
+- story.svg embeds GIFs up front. SMIL only controls visibility, so a GIF may not begin on its first frame when it appears.

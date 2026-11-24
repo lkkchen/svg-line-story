@@ -98,7 +98,7 @@ def main():
     p.add_argument('--frames',type=int,default=24)
     p.add_argument('--frame-ms',type=int,default=90)
     p.add_argument('--playback',choices=['once','loop'],default='once')
-    p.add_argument('--palette',default='spring',help='色板 id 或中文名，与 story.json 的 paletteName 一致')
+    p.add_argument('--palette',default='spring',help='Palette id or English name. It must match paletteName in story.json.')
     a=p.parse_args()
     print(generate(a.output,a.kind,a.width,a.height,a.frames,a.frame_ms,a.playback,a.palette))
 

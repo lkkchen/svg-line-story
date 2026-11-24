@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SVG 长卷 / SVG Line Story</title>
-<meta name="description" content="两份可离线打开的 SVG + SMIL 长卷示例。">
+<title>SVG Line Story</title>
+<meta name="description" content="Two finished SVG + SMIL scrolls you can open offline.">
 <style>
   :root {
     --paper: #fcfaf4;
@@ -20,7 +20,7 @@
     min-height: 100vh;
     background: var(--paper);
     color: var(--ink);
-    font: 17px/1.6 "Iowan Old Style", Palatino, "Songti SC", serif;
+    font: 17px/1.6 "Iowan Old Style", Palatino, Georgia, serif;
   }
   main {
     max-width: 720px;
@@ -40,7 +40,6 @@
     font-weight: 500;
     letter-spacing: -0.03em;
   }
-  h1 span { color: var(--muted); font-weight: 400; }
   .lead { max-width: 38em; margin: 16px 0 36px; }
   .examples { display: grid; gap: 16px; }
   a.card {
@@ -74,18 +73,18 @@
 <body>
 <main>
   <p class="kicker">SVG + SMIL</p>
-  <h1>SVG 长卷 <span>/ SVG Line Story</span></h1>
-  <p class="lead">两份已经编译好的长卷，可以直接在浏览器里播放。故事、路径和画面都是原生 SVG。Two finished scrolls. Open either one and play it in the browser. The story, the path, and the drawings are native SVG.</p>
+  <h1>SVG Line Story</h1>
+  <p class="lead">Two finished scrolls. Open either one and play it in the browser. The story, the path, and the drawings are native SVG.</p>
   <div class="examples">
     <a class="card" href="examples/spring/dist/">
-      <strong>一笔画出春天</strong>
+      <strong>A line into spring</strong>
       <em>A LINE INTO SPRING</em>
-      <p>三幕，约 32 秒。一颗种子沿一条线醒来、盛放，然后离开。A seed wakes, blooms, and travels on along one line.</p>
+      <p>Three chapters, about 32 seconds. A seed wakes along one line, blooms, and travels on.</p>
     </a>
     <a class="card" href="examples/1024/dist/">
-      <strong>一行代码，点亮世界</strong>
+      <strong>One line of code lights the world</strong>
       <em>FROM THE FIRST PROGRAM</em>
-      <p>程序员节长卷。用来看一幕里可以画多少具体的东西，不是新故事的默认长度。A programmer’s-day scroll, kept as a density reference rather than a default length.</p>
+      <p>A Programmer's Day scroll. Use it to see how many concrete things one chapter can hold. It is not the default length for a new story.</p>
     </a>
   </div>
   <footer>

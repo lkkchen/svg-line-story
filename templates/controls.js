@@ -53,7 +53,7 @@
     if(!dragging) seek.value=t;
   }
   function changePlayState(next){ paused=next;for(const root of roots){next?root.pauseAnimations():root.unpauseAnimations();}
-    play.textContent=next?'▶ 继续':'Ⅱ 暂停';syncGifs(time(),true);syncTransport();
+    play.textContent=next?'▶ Resume':'Ⅱ Pause';syncGifs(time(),true);syncTransport();
   }
   function yAt(t){ const index=clamped(t)*4,i=Math.floor(index),f=index-i;
     return TIMELINE.tipYs[Math.min(i,TIMELINE.tipYs.length-1)]*(1-f)+TIMELINE.tipYs[Math.min(i+1,TIMELINE.tipYs.length-1)]*f;
@@ -75,10 +75,10 @@
   seek.addEventListener('pointerdown',()=>dragging=true);
   seek.addEventListener('input',()=>{reducedHold=false;setTime(seek.value);followTip(+seek.value);});
   seek.addEventListener('change',()=>{dragging=false;});
-  follow.addEventListener('click',()=>{followOn=!followOn;follow.classList.toggle('selected',followOn);follow.textContent=followOn?'◉ 自动跟随':'◎ 自由滚动';});
+  follow.addEventListener('click',()=>{followOn=!followOn;follow.classList.toggle('selected',followOn);follow.textContent=followOn?'◉ Follow':'◎ Free scroll';});
   debug.addEventListener('click',()=>{debugOn=!debugOn;if(markers)markers.setAttribute('visibility',debugOn?'visible':'hidden');debug.classList.toggle('selected',debugOn);});
   ['wheel','touchstart'].forEach(event=>window.addEventListener(event,()=>{
-    if(followOn){followOn=false;follow.classList.remove('selected');follow.textContent='◎ 自由滚动';}
+    if(followOn){followOn=false;follow.classList.remove('selected');follow.textContent='◎ Free scroll';}
   },{passive:true}));
   function frame(){let t=time();refresh(t);syncGifs(t);tickSound(t);if(!paused && t<TIMELINE.duration && Math.abs(t-previousTime)>.0001)followTip(t);
     // Do not pause SMIL at the end — looping motifs (e.g. finale fireworks) keep playing.
@@ -129,8 +129,8 @@
   }
   installSound();
   if(reduced){
-    reducedHold=true; followOn=false; follow.classList.remove('selected'); follow.textContent='◎ 自由滚动';
-    setTime(TIMELINE.duration); changePlayState(true); play.textContent='▶ 从头播放';
+    reducedHold=true; followOn=false; follow.classList.remove('selected'); follow.textContent='◎ Free scroll';
+    setTime(TIMELINE.duration); changePlayState(true); play.textContent='▶ Play from the start';
   }
   refresh(reduced ? TIMELINE.duration : 0);requestAnimationFrame(frame);
   function installSound(){
@@ -140,7 +140,7 @@
     const live=[], audio={};
     function paint(){
       soundBtn.setAttribute('aria-pressed',soundOn?'true':'false');
-      soundBtn.textContent=soundOn?'♪ 静音':'♪ 声音';
+      soundBtn.textContent=soundOn?'♪ Mute':'♪ Sound';
     }
     function noiseBuffer(ctx){
       const n=Math.floor(ctx.sampleRate*2), buf=ctx.createBuffer(1,n,ctx.sampleRate), d=buf.getChannelData(0);

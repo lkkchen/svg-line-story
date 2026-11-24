@@ -32,25 +32,25 @@ def direction_warnings(story, prepared):
         hits=[item['hit'] for item in chapter.get('route', []) if isinstance(item, dict) and item.get('hit')]
         times=[arrivals[name] for name in hits if name in arrivals]
         if story.get('arc') and chapter.get('duration', 0)>8 and len(times)<2:
-            notes.append(f'{chapter["id"]} 超过 8 秒却只有一次触发，幕内应再碰到一个物件')
+            notes.append(f'{chapter["id"]} runs longer than 8 seconds with only one hit. The line should meet another object in this chapter.')
         elif story.get('arc') and len(times)>=2 and times[1]-times[0]>7:
-            notes.append(f'{chapter["id"]} 的前两次触发隔了 {times[1]-times[0]:.1f}s，宜落在 3–5 秒')
+            notes.append(f'{chapter["id"]} leaves {times[1]-times[0]:.1f}s between its first two hits. Keep that gap at 3–5 seconds.')
         hero=chapter_hero(chapter)
         family=visible_family(hero) if hero else None
         families.append(family)
         intended=(hero or {}).get('motion') or chapter.get('motion')
         if hero and intended and hero.get('motif') in MOTIF_MOTION and intended!=MOTIF_MOTION[hero['motif']]:
-            notes.append(f'{hero["id"]} 需要 {intended}，内置 {hero["motif"]} 实际是 {MOTIF_MOTION[hero["motif"]]}，这一下要写成 customMotifs')
+            notes.append(f'{hero["id"]} asks for {intended}, but the built-in {hero["motif"]} is {MOTIF_MOTION[hero["motif"]]}. Draw this beat as customMotifs.')
         emphasis=chapter.get('emphasis')
         if emphasis and emphasis not in ('ink','sage','orange','rose'):
-            notes.append(f'{chapter["id"]} emphasis 只能是 ink、sage、orange、rose')
+            notes.append(f'{chapter["id"]} emphasis must be ink, sage, orange, or rose')
     for index in range(1, len(families)):
         if families[index] and families[index]==families[index-1]:
-            notes.append(f'第 {index} 幕和第 {index+1} 幕主角都是 {families[index]}，应换成另一种动作')
+            notes.append(f'Chapter {index} and chapter {index+1} both use {families[index]} for the hero. Change one motion.')
     for index in range(1, len(story['chapters'])):
         left, right=story['chapters'][index-1].get('emphasis'), story['chapters'][index].get('emphasis')
         if left and left==right:
-            notes.append(f'第 {index} 幕和第 {index+1} 幕都强调 {left}，应换一个主角色色')
+            notes.append(f'Chapter {index} and chapter {index+1} both emphasize {left}. Change one hero color.')
     return notes
 
 SHAPE_RE=re.compile(r'<(?:path|circle|ellipse|rect|polygon|polyline|line)\b')
@@ -78,22 +78,22 @@ def text_boxes(story):
     """Approximate boxes of the compiler's typography, as (label, x0, y0, x1, y1)."""
     H=story['canvas']['height'];boxes=[]
     prologue=story.get('prologue','x');prologue=prologue if isinstance(prologue,list) else [prologue]
-    boxes.append(('开篇标题',70,95,700,419+len(prologue)*42))
+    boxes.append(('opening title',70,95,700,419+len(prologue)*42))
     for idx,ch in enumerate(story['chapters']):
-        name=f'第 {idx+1} 幕'
+        name=f'chapter {idx+1}'
         x,y=ch['labelAt']
         label=f'{ch.get("number",idx+1):0>2}  /  {ch.get("english","CHAPTER")}'
-        boxes.append((f'{name}幕标签',x,y-16,x+max(155,text_width(label,18)*1.15),y+24))
+        boxes.append((f'{name} label',x,y-16,x+max(155,text_width(label,18)*1.15),y+24))
         heads=ch.get('headline',[ch.get('title','')])
         wide=max(text_width(ln,53) for ln in heads)
-        boxes.append((f'{name}标题',x,y+55,x+wide,y+100+(len(heads)-1)*65+12))
+        boxes.append((f'{name} title',x,y+55,x+wide,y+100+(len(heads)-1)*65+12))
         caps=ch.get('caption',[])
         if caps:
             cx,cy=ch.get('captionAt',[x,y+440])
             wide=max(text_width(ln,27) for ln in caps)
-            boxes.append((f'{name}副文案',cx,cy-25,cx+wide,cy+(len(caps)-1)*44+8))
+            boxes.append((f'{name} caption',cx,cy-25,cx+wide,cy+(len(caps)-1)*44+8))
     top=float(story.get('epilogueTop',H-134))
-    boxes.append(('结尾',205,top-35,545,H-50))
+    boxes.append(('ending',205,top-35,545,H-50))
     return boxes
 
 def box_distance(point, box):
@@ -113,22 +113,22 @@ def richness_warnings(story, prepared):
     """Soft checks for sparse scenes, thin heroes and text crowding. They do not reject a story."""
     notes=[];H=float(story['canvas']['height'])
     for idx,ch in enumerate(story['chapters']):
-        name=f'第 {idx+1} 幕（{ch["id"]}）'
+        name=f'chapter {idx+1} ({ch["id"]})'
         objects=ch.get('objects',[])
         if len(objects)<MIN_CHAPTER_OBJECTS:
-            notes.append(f'{name}只有 {len(objects)} 个物件，下限是 1 主角 + 3 辅助 + 2 组以上点缀 + 1 处小注释 = {MIN_CHAPTER_OBJECTS}；从素材清单里补')
+            notes.append(f'{name} has only {len(objects)} objects. The minimum is 1 hero + 3 supporting objects + 2 ornament groups + 1 small annotation = {MIN_CHAPTER_OBJECTS}. Add them from the material list.')
         if not any('<text' in (custom_svg(story,o.get('motif')) or '') for o in objects):
-            notes.append(f'{name}没有小注释（含 <text> 的 customMotifs），加一处年份、地名、数字或原话')
+            notes.append(f'{name} has no small annotation (a customMotif that contains <text>). Add a year, a place, a number, or a quoted line.')
         hero=chapter_hero(ch)
         svg=custom_svg(story,hero.get('motif')) if hero else None
         if svg is not None:
             shapes=len(SHAPE_RE.findall(svg))
             fills={v.lower() for v in FILL_RE.findall(svg) if v.lower() not in ('none','transparent')}
             if shapes<HERO_MIN_SHAPES or len(fills)<HERO_MIN_FILLS:
-                notes.append(f'{name}主角 {hero["id"]} 只有 {shapes} 个图形、{len(fills)} 种填充，下限是 {HERO_MIN_SHAPES} 个图形、{HERO_MIN_FILLS} 种填充，再加细节线和地面投影')
+                notes.append(f'{name} hero {hero["id"]} has only {shapes} shapes and {len(fills)} fills. The minimum is {HERO_MIN_SHAPES} shapes and {HERO_MIN_FILLS} fills. Add a detail line and a ground shadow.')
         for obj in objects:
             other=name_mismatch(obj)
-            if other:notes.append(f'{obj["id"]} 名字是 {other}，画出来却是 {obj["motif"]}；改名，或用 customMotifs 画真正的 {other}')
+            if other:notes.append(f'{obj["id"]} is named {other} but drawn as {obj["motif"]}. Rename it, or draw the real {other} with customMotifs.')
     spans=[(o['y'],o['y']+200*float(o.get('scale',1))) for o in prepared['objects'].values()]
     sparse=[];y=500.0
     while y+DENSITY_WINDOW<=H-300:
@@ -138,12 +138,12 @@ def richness_warnings(story, prepared):
             else:sparse.append([y,y+DENSITY_WINDOW,count])
         y+=DENSITY_STEP
     for top,bottom,count in sparse:
-        notes.append(f'y={top:.0f}–{bottom:.0f} 偏空：每 {DENSITY_WINDOW} 设计单位最少只有 {count} 个物件，下限 {DENSITY_MIN}；补素材里的辅助物件、点缀或小注释')
+        notes.append(f'y={top:.0f}–{bottom:.0f} is sparse: only {count} objects in {DENSITY_WINDOW} design units, below the minimum of {DENSITY_MIN}. Add a supporting object, an ornament, or a small annotation from the material list.')
     boxes=text_boxes(story)
     for box in boxes:
         nearest=min(box_distance(p,box) for seg in prepared['segments'] for curve in seg['curves'] for p in curve['samples'])
         if nearest<TEXT_CLEARANCE:
-            notes.append(f'{box[0]}离主线只有 {nearest:.0f} 设计单位，宜在 70 以上；挪文字或改 waypoint')
+            notes.append(f'{box[0]} is only {nearest:.0f} design units from the main line. Keep text at least 70 away. Move the type or change a waypoint.')
     return notes
 
 def validate(story, asset_root=None):

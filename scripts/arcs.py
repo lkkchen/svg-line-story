@@ -4,57 +4,57 @@
 These are story skeletons, not visual styles. Ads arcs that end on a call to
 action are intentionally absent: the scroll stays a line that arrives somewhere.
 Usage:
-  python3 scripts/arcs.py --suggest '一座城市的变迁'
+  python3 scripts/arcs.py --suggest 'how a city changes'
 """
 from __future__ import annotations
-import argparse, copy, json
+import argparse, copy, json, re
 
 ARCS = [
     {
-        'id': 'three_act', 'order': 0, 'name': '三幕',
-        'line': '同一根线完成一次变化，结尾回到开头的物件或情绪',
+        'id': 'three_act', 'order': 0, 'name': 'Three acts',
+        'line': 'One line completes a change, and the ending returns to the opening object or feeling',
         'fits': [],
-        'roles': ['起因', '转折', '回响'],
+        'roles': ['Cause', 'Turn', 'Echo'],
         'emphasis': ['sage', 'orange', 'ink'],
         'motions': ['draw', 'pop', 'still'],
     },
     {
-        'id': 'timeline', 'order': 1, 'name': '时间线',
-        'line': '同一根线表示时间向前，不往回跳',
-        'fits': ['历史', '变迁', '起源', '演变', '年代', '一生', '过去', '未来', '成长'],
-        'roles': ['起点', '经过', '此刻'],
+        'id': 'timeline', 'order': 1, 'name': 'Timeline',
+        'line': 'One line means time moving forward, never jumping back',
+        'fits': ['history', 'changes', 'origin', 'evolution', 'lifetime', 'the past', 'the future', 'growing up'],
+        'roles': ['Start', 'Passing through', 'This moment'],
         'emphasis': ['ink', 'sage', 'orange'],
         'motions': ['draw', 'sway', 'still'],
     },
     {
-        'id': 'man_in_hole', 'order': 2, 'name': '跌入再爬出',
-        'line': '线先下沉，再抬到比起点更高的位置',
-        'fits': ['失败', '失去', '迷路', '困境', '重新', '归来', '痊愈', '低谷', '跌倒'],
-        'roles': ['原本安稳', '坠落', '爬出来'],
+        'id': 'man_in_hole', 'order': 2, 'name': 'Fall and climb',
+        'line': 'The line sinks first, then rises higher than where it began',
+        'fits': ['failure', 'loss', 'lost', 'trouble', 'again', 'return', 'recovery', 'low point', 'fall'],
+        'roles': ['Steady', 'The fall', 'Climbing out'],
         'emphasis': ['sage', 'ink', 'orange'],
         'motions': ['sway', 'draw', 'pop'],
     },
     {
-        'id': 'myth_buster', 'order': 3, 'name': '误区纠正',
-        'line': '线先穿过一个看起来成立的物件，再折向真正的原因',
-        'fits': ['误区', '其实', '真相', '谣言', '以为'],
-        'roles': ['大家以为', '其实不然', '因此'],
+        'id': 'myth_buster', 'order': 3, 'name': 'Myth busting',
+        'line': 'The line first passes through something that looks true, then turns toward the real cause',
+        'fits': ['myth', 'actually', 'truth', 'rumor', 'everyone thinks'],
+        'roles': ['What people think', 'Not so', 'Therefore'],
         'emphasis': ['rose', 'ink', 'orange'],
         'motions': ['still', 'draw', 'pop'],
     },
     {
-        'id': 'how_it_works', 'order': 4, 'name': '怎么发生',
-        'line': '线按真实顺序穿过步骤，不先给结局再倒叙',
-        'fits': ['如何', '怎么', '原理', '步骤', '方法', '制作'],
-        'roles': ['先看见', '中间一步', '所以如此'],
+        'id': 'how_it_works', 'order': 4, 'name': 'How it works',
+        'line': 'The line passes through the steps in real order, without showing the ending first',
+        'fits': ['how', 'why it works', 'principle', 'steps', 'method', 'making'],
+        'roles': ['First sight', 'The middle step', 'So this is why'],
         'emphasis': ['orange', 'sage', 'ink'],
         'motions': ['pop', 'draw', 'still'],
     },
     {
-        'id': 'story_spine', 'order': 5, 'name': '故事脊柱',
-        'line': '线从重复的日常里岔出一次，再回到被改变的日常',
-        'fits': ['每天', '直到', '从前', '从此', '忽然', '有一天'],
-        'roles': ['每天如此', '直到有一天', '从此以后'],
+        'id': 'story_spine', 'order': 5, 'name': 'Story spine',
+        'line': 'The line leaves a repeated day once, then returns to a day that has changed',
+        'fits': ['every day', 'until', 'once upon', 'from then on', 'suddenly', 'one day'],
+        'roles': ['Every day', 'Until one day', 'From then on'],
         'emphasis': ['sage', 'orange', 'rose'],
         'motions': ['sway', 'pop', 'still'],
     },
@@ -91,8 +91,14 @@ def motions_for(spec, motion='calm'):
     return seq
 
 
+def term_in(text, term):
+    if re.search(r'[A-Za-z]', term):
+        return re.search(r'(?<![A-Za-z])' + re.escape(term) + r'(?![A-Za-z])', text, re.I) is not None
+    return term in text
+
+
 def _score(text, spec):
-    hits = [term for term in spec['fits'] if term in text]
+    hits = [term for term in spec['fits'] if term_in(text, term)]
     return sum(len(term) for term in hits), hits
 
 
@@ -107,10 +113,10 @@ def suggest_arc(topic, motion='calm'):
     ranked.sort(key=lambda row: (-row[0], row[1]))
     if ranked[0][0] == 0:
         best = resolve_arc('three_act')
-        because = '主题没有更具体的骨架，用三幕'
+        because = 'The theme has no more specific skeleton, so use three acts'
     else:
         best = copy.deepcopy(ranked[0][2])
-        because = '主题里有「' + '、'.join(ranked[0][3][:3]) + '」'
+        because = 'The theme contains ' + ', '.join(ranked[0][3][:3])
     alternate = next(spec for spec in ARCS if spec['id'] != best['id'])
     arc = {
         'id': best['id'],
@@ -129,9 +135,9 @@ def suggest_arc(topic, motion='calm'):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='按主题推荐长卷叙事弧')
+    parser = argparse.ArgumentParser(description='Suggest a narrative arc for a scroll from a theme')
     parser.add_argument('--suggest', metavar='THEME')
-    parser.add_argument('--motion', choices=['calm', 'punchy'], default='calm', help='来自所选色板的动作幅度')
+    parser.add_argument('--motion', choices=['calm', 'punchy'], default='calm', help='Motion amount from the chosen palette')
     parser.add_argument('--list', action='store_true')
     parser.add_argument('--json', action='store_true')
     args = parser.parse_args()
@@ -141,15 +147,15 @@ def main():
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return
         arc = result['arc']
-        print(f"主题「{result['topic']}」")
-        print(f"叙事弧：{arc['name']} {arc['id']} · 推荐")
-        print(f"依据：{arc['because']}")
-        print(f"线的含义：{arc['line']}")
-        print('三幕：' + ' → '.join(arc['roles']))
-        print('主角色色：' + ' → '.join(arc['emphasis']))
-        print('主角动作：' + ' → '.join(arc['motions']))
+        print(f"Theme: {result['topic']}")
+        print(f"Arc: {arc['name']} {arc['id']} · recommended")
+        print(f"Why: {arc['because']}")
+        print(f"What the line means: {arc['line']}")
+        print('Three chapters: ' + ' → '.join(arc['roles']))
+        print('Hero colors: ' + ' → '.join(arc['emphasis']))
+        print('Hero motions: ' + ' → '.join(arc['motions']))
         alt = result['alternate']
-        print(f"也可改成：{alt['name']} {alt['id']}（{alt['line']}）")
+        print(f"Could also be: {alt['name']} {alt['id']} ({alt['line']})")
         return
     if not args.list:
         parser.error('pass --suggest THEME or --list')

@@ -104,7 +104,7 @@ class GifDecorationTests(unittest.TestCase):
         self.assertEqual(report['gifDecorations'],3)
 
     def test_theme_drafts_do_not_copy_spring_gifs(self):
-        story=plan('一列火车穿过森林')
+        story=plan('a train through the forest')
         self.assertEqual(sum(len(ch.get('gifDecorations',[])) for ch in story['chapters']),0)
 
 if __name__=='__main__':unittest.main(verbosity=2)

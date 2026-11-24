@@ -1,6 +1,6 @@
 {
-  "title": "一笔画出春天",
-  "theme": "一颗种子遇见春天",
+  "title": "A line into spring",
+  "theme": "A seed meets spring",
   "duration": 32,
   "objectPins": [
     {
@@ -59,7 +59,7 @@
       "y": 3211.37
     },
     {
-      "object": "far-hills",
+      "object": "far-tree",
       "x": 553.0,
       "y": 3640.4
     }

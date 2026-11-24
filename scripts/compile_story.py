@@ -92,7 +92,7 @@ def valid_story(story):
         if name not in story: errors.append(f'Missing required field: {name}')
     if errors:return errors,warnings
     w=story['canvas'].get('width');h=story['canvas'].get('height')
-    if w != 750: warnings.append('V1 推荐 750 宽度；其他宽度也可用，但要重新设计分镜。')
+    if w != 750: warnings.append('V1 recommends a width of 750. Other widths work, but the storyboard has to be redesigned.')
     if not isinstance(h,(int,float)) or h<1800:errors.append('canvas.height should be >= 1800')
     if not 12<=story['duration']<=300:errors.append('duration should be between 12 and 300 seconds')
     if len(story['chapters'])<2:errors.append('At least two chapters are needed')
@@ -308,7 +308,7 @@ def svg_routes(story, prepared):
 def svg_typography(story):
     p=story['palette'];ink=esc(p['ink']);sage=esc(p['sage'])
     s=[]
-    prologue=story.get('prologue','一条缓缓生长的线，带我们走向下一幕。')
+    prologue=story.get('prologue','A line grows slowly and leads us into the next chapter.')
     prologue=prologue if isinstance(prologue,list) else [prologue]
     # Opening title card: masthead → title → subtitle → prologue lines, one by one.
     open_bits=[
@@ -391,7 +391,7 @@ def svg_typography(story):
        {reveal_anim(story['duration']-2.1,1.5)}
        <path d="M205 {fnum(H-275)}h340" stroke="{sage}" stroke-dasharray="5 10" stroke-width="2"/>
        <circle cx="375" cy="{fnum(H-275)}" r="7" fill="{esc(p['orange'])}"/>
-       {typetext(375,H-134,story.get('epilogue','愿每一段路，都有花开。'),32,p['ink'],'text-anchor="middle" font-weight="600"')}
+       {typetext(375,H-134,story.get('epilogue','May every stretch of the road find something in bloom.'),32,p['ink'],'text-anchor="middle" font-weight="600"')}
        {typetext(375,H-78,signature,17,p['sage'],'text-anchor="middle" letter-spacing="4" font-family="Georgia,serif"')}
     </g>''')
     return '\n'.join(s)
@@ -507,9 +507,9 @@ def render_html(story, prepared, schedule, decorations=()):
     js=js.replace('/*__GIF_ACCENTS__*/', 'const GIF_ACCENTS='+json.dumps(gif_config,separators=(',',':'))+';')
     sound=resolve_sound(story, prepared)
     js=js.replace('/*__SOUND_CONFIG__*/', 'const SOUND='+('null' if sound is None else json.dumps(sound,separators=(',',':')))+';')
-    sound_btn='<button id="btn-sound" type="button" aria-pressed="false">♪ 声音</button>' if sound else ''
-    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-         <meta name="description" content="{esc(story['theme'])} · SVG + SMIL 手绘长卷（可选透明 GIF 点缀）"><title>{esc(story['title'])} · SVG 长卷</title>
+    sound_btn='<button id="btn-sound" type="button" aria-pressed="false">♪ Sound</button>' if sound else ''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+         <meta name="description" content="{esc(story['theme'])} · an SVG + SMIL hand-drawn scroll, with optional transparent GIF accents"><title>{esc(story['title'])} · SVG Line Story</title>
          <style>{css}</style></head><body>
          <header class="topbar"><div class="top-inner"><span class="brand-mark">〰</span><span class="brand-name">LINE / STORY</span><span class="brand-sub">SVG · SMIL{' · GIF ACCENTS' if decorations else ''}</span><span class="edition">EDITION 001</span></div></header>
          <div class="kicker"><span class="kicker-line"></span><span>A STORY DRAWN IN A SINGLE THREAD</span></div>
@@ -519,10 +519,10 @@ def render_html(story, prepared, schedule, decorations=()):
              <section class="base-layer">{base}</section>
          </div></main>
          <div class="footer-note"><span>ONE THREAD · {len(story['chapters'])} CHAPTERS · {int(story['duration'])} SECONDS</span><span>VECTOR STORY{' + GIF DETAILS' if decorations else ''}</span></div>
-         <div class="dock-slot"><div class="dock" role="group" aria-label="长卷动画控制"><div class="dock-title"><span><i class="dot"></i> STORY TIMELINE</span><span class="dock-tools">{sound_btn}<span id="clock">00:00 / {int(story['duration'])//60:02d}:{int(story['duration'])%60:02d}</span></span></div>
-           <input type="range" id="seek" min="0" max="{story['duration']}" step="0.05" value="0" aria-label="跳转故事时间轴">
-           <div class="buttons"><button id="btn-play" type="button">Ⅱ 暂停</button><button id="btn-restart" type="button">↺ 重播</button><button id="btn-follow" class="selected" type="button">◉ 自动跟随</button><button id="btn-debug" type="button">⊹ 锚点</button></div>
-         </div><button type="button" class="dock-peek" id="dock-peek" tabindex="-1" aria-hidden="true" aria-label="展开长卷控制"><span class="dock-peek-bar"></span></button></div><script>{js}</script></body></html>'''
+         <div class="dock-slot"><div class="dock" role="group" aria-label="Scroll playback controls"><div class="dock-title"><span><i class="dot"></i> STORY TIMELINE</span><span class="dock-tools">{sound_btn}<span id="clock">00:00 / {int(story['duration'])//60:02d}:{int(story['duration'])%60:02d}</span></span></div>
+           <input type="range" id="seek" min="0" max="{story['duration']}" step="0.05" value="0" aria-label="Seek the story timeline">
+           <div class="buttons"><button id="btn-play" type="button">Ⅱ Pause</button><button id="btn-restart" type="button">↺ Replay</button><button id="btn-follow" class="selected" type="button">◉ Follow</button><button id="btn-debug" type="button">⊹ Anchors</button></div>
+         </div><button type="button" class="dock-peek" id="dock-peek" tabindex="-1" aria-hidden="true" aria-label="Show the scroll controls"><span class="dock-peek-bar"></span></button></div><script>{js}</script></body></html>'''
 
 
 def build(source:Path,out:Path):
@@ -549,24 +549,24 @@ def build(source:Path,out:Path):
                         for d in decorations]}
     (out/'cues.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8')
     lines=[f'# {story["title"]} · Storyboard','',
-           f'**主题**：{story["theme"]}　 **总时长**：{story["duration"]} 秒　 **配色**：{story.get("paletteName","custom")}　 **叙事弧**：{story.get("arc","three_act")}',
-           '', '| 幕次 | 起止时间 | 场景 | 主线要经过的物件 |','|---|---|---|---|']
+           f'**Theme**: {story["theme"]}  **Duration**: {story["duration"]} seconds  **Palette**: {story.get("paletteName","custom")}  **Arc**: {story.get("arc","three_act")}',
+           '', '| Chapter | Time | Scene | Objects the line must hit |','|---|---|---|---|']
     for ch in story['chapters']:
-        hits='、'.join(str(x['hit']) for x in ch['route'] if isinstance(x,dict))
+        hits=', '.join(str(x['hit']) for x in ch['route'] if isinstance(x,dict))
         role=ch.get('role', '')
         lines.append(f'| {ch.get("number", "")} | {fnum(ch["start"])}–{fnum(ch["start"]+ch["duration"])}s | {role} {ch["title"]} · {" / ".join(ch.get("headline", []))} | {hits} |')
-    lines+=['','## 路径触发点','', '| 元素 | 到达时间 | 入场时间 | 坐标 |','|---|---:|---:|---|']
+    lines+=['','## Path cues','', '| Object | Arrival | Reveal | Position |','|---|---:|---:|---|']
     for c in prepared['connections']:
         lines.append(f'| {c["object"]} | {c["lineArrival"]:.2f}s | {c["revealAt"]:.2f}s | ({c["x"]:.1f}, {c["y"]:.1f}) |')
     if decorations:
-        lines+=['','## 局部 GIF 点缀（不替代 SVG 主体）','',
-                '| GIF | 作用区域 | 触发秒数 | 消失秒数 | 播放 |','|---|---|---:|---:|---|']
+        lines+=['','## Small GIF accents (they do not replace the SVG)','',
+                '| GIF | Area | Starts | Ends | Playback |','|---|---|---:|---:|---|']
         for d in decorations:
             lines.append(f'| {d["id"]} | {d["src"]} | {d["begin"]:.2f}s | {d["end"]:.2f}s | {d["playback"]} |')
-    lines+=['','## 审核须知','', '- 所有构图位置属于 750px 设计坐标，不是 CSS 像素。',
-            '- 路径、主角和关键动作仍然属于内联 SVG；小尺寸透明 GIF 只做局部装饰。',
-            '- 浏览器版本按 cue 动态挂载 GIF；暂停/跳转后只保证重新开始，不支持 GIF 帧级 seek。',
-            '- story.svg 会提前内嵌 GIF：SMIL 控制可见性，不保证 GIF 入场时从第一帧开始。']
+    lines+=['','## Review notes','', '- Positions are 750px design units, not CSS pixels.',
+            '- The path, the heroes, and the important motion stay inline SVG. Small transparent GIFs are local decoration only.',
+            '- The browser page mounts each GIF at its cue. After a pause or a seek it starts again from the first frame. Frame-accurate GIF seeking is not supported.',
+            '- story.svg embeds GIFs up front. SMIL only controls visibility, so a GIF may not begin on its first frame when it appears.']
     (out/'STORYBOARD.md').write_text('\n'.join(lines)+'\n',encoding='utf8')
     print(f'Generated: {out.resolve()}')
     print('Paths:',result['pathLengths']);print('Cues:',result['cues'])
